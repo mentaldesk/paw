@@ -1,0 +1,181 @@
+meta:
+  engine: 4.1.0
+units:
+  # cx = 18 mm
+  # cy = 17 mm
+  kx: cx + 1
+  ky: cy + 1
+  px: kx + 1
+  py: ky + 1
+  # This is way more space than the screws need... allows room for
+  # an M2 heatset insert (3mm) + 2mm walls encasing this. The idea
+  # is that this would go on the bottom of the keyplate and the 
+  # screws come in from the undeside of the case, so they're hidden
+  screwSize: 3.5
+points:
+  zones:
+    matrix:
+      # Fix placement on KiCAD sheet.
+      anchor:
+        shift: [80, -190]
+      key:
+        padding: 1kx
+        spread: 1kx
+      columns:
+        pinky:
+          key:
+            splay: 16
+        ring:
+          key:
+            splay: -4
+
+            stagger: 10
+            spread: 1px + 1
+        middle:
+          key:
+            splay: -5
+            stagger: 6
+            spread: px
+        index:
+          key:
+            splay: -4
+            stagger: -8
+            spread: px
+        inner:
+          key:
+            stagger: -0.2ky
+      rows:
+        bottom:
+        home:
+        top:
+    thumbs:
+      key:
+        padding: 1ky
+        spread: 1kx
+      anchor:
+        ref: matrix_index_bottom
+        shift: [0.35kx, -1.3ky]
+      columns:
+        mod1:
+          key:
+            splay: -11
+            #asym: source
+        mod2:
+          key:
+            splay: -10
+            shift: [2, 0.25ky - 6]
+        mod3:
+          key:
+            splay: -10
+            shift: [4, -4]
+      rows:
+        cluster:
+  #mirror: &mirror
+  #  ref: thumbs_mod3_cluster
+  #  distance: 1.5kx          
+outlines:
+    switches:
+      - what: rectangle
+        where: true
+        bound: false
+        size: [14,14]
+        
+    lhs_outline:
+      - what: polygon
+        operation: stack
+        fillet: 4
+        # Order matters: go clockwise around the outside
+        points:
+          # Top edge (outermost tops)
+          - ref: matrix_pinky_top    
+            shift: [-0.55kx,  0.55ky]
+          - ref: matrix_pinky_top    
+            shift: [0.55kx,  0.55ky]
+          - ref: matrix_ring_top     
+            shift: [-0.55kx,  0.55ky]
+          - ref: matrix_ring_top     
+            shift: [0.55kx,  0.55ky]
+          - ref: matrix_middle_top   
+            shift: [-0.50kx,  0.55ky]
+          - ref: matrix_middle_top   
+            shift: [.50kx,  0.55ky]
+          - ref: matrix_index_top    
+            shift: [-0.35kx,  0.60ky]
+          - ref: matrix_inner_top    
+            shift: [ .55kx,  0.8ky]
+
+          # Make space for the battery, MCU and OLED
+          - ref: matrix_inner_top
+            shift: [ 0.55kx + 20,  0.8ky]
+          - ref: matrix_inner_top
+            shift: [ 0.55kx + 20,  -60]
+
+
+          # Down into the thumb cluster
+          - ref: thumbs_mod3_cluster 
+            shift: [ 0.55kx,  0.55ky]
+          - ref: thumbs_mod3_cluster 
+            shift: [ 0.55kx,  -0.55ky]
+          - ref: thumbs_mod3_cluster 
+            shift: [ -0.55kx,  -0.55ky]
+          - ref: thumbs_mod1_cluster 
+            shift: [0.55kx, -0.55ky]
+          - ref: thumbs_mod1_cluster 
+            shift: [-0.55kx, -0.55ky]
+
+          # Back up the bottom edge of the matrix
+          - ref: matrix_index_bottom  
+            shift: [-0.55kx, -0.55ky]
+          - ref: matrix_ring_bottom  
+            shift: [-0.25kx, -0.55ky]
+          - ref: matrix_pinky_bottom 
+            shift: [0.50kx, -0.55ky]
+          - ref: matrix_pinky_bottom 
+            shift: [-0.50kx, -0.55ky]
+
+    lhs:
+      - name: lhs_outline
+      - operation: subtract
+        name: switches
+
+    switch_block:
+      # One big rectangle that bounds all switch positions
+      - what: rectangle
+        size: [300, 300]   # extra margin around the outermost switches
+        adjust: 
+          - shift: [120, -160]
+
+      # Then subtract each switch “hole” from that big block
+      - operation: subtract
+        name: switches
+pcbs:
+  lobo:
+    outlines:
+      main:
+        outline: lhs_outline
+    footprints:
+      choc_hotswap:
+        what: choc
+        where: true
+        params:
+          keycaps: true
+          reverse: true
+          hotswap: true
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+      diode:
+        what: diode
+        where: true
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [0, -5]
+      promicro:
+        what: promicro
+        params:
+          orientation: "down"
+        where:
+          ref: matrix_inner_top
+          shift: [kx,-0.5ky]
+          rotate: -90
