@@ -18,6 +18,16 @@
     };
 
     behaviors {
+        // Custom sticky key with quick release
+        skq: sticky_key_quick_release {
+            compatible = "zmk,behavior-sticky-key";
+            #binding-cells = <1>;
+            bindings = <&kp>;
+            release-after-ms = <500>;
+            quick-release;
+            ignore-modifiers;
+        };
+
         // Bottom row mods without quick-tap (most reliable for shift)
         bml_no_qt: bottom_mods_left_no_quicktap {
             compatible = "zmk,behavior-hold-tap";
@@ -74,20 +84,12 @@
             tapping-term-ms = <200>;
             quick-tap-ms = <0>;
             flavor = "tap-preferred";
-            bindings = <&kp>, <&sk>;
+            bindings = <&kp>, <&skq>;
         };
     };
 
     combos {
         compatible = "zmk,combos";
-        
-        // N+E+I = Enter
-        combo_enter {
-            timeout-ms = <50>;
-            key-positions = <16 17 18>;
-            bindings = <&kp ENTER>;
-            layers = <BASE>;
-        };
         
         // R+S+T = ESC
         combo_esc {
@@ -97,19 +99,11 @@
             layers = <BASE>;
         };
         
-        // L+U = Grave/Backtick
-        combo_grave {
+        // N+E+I = Enter
+        combo_enter {
             timeout-ms = <50>;
-            key-positions = <6 7>;
-            bindings = <&kp GRAVE>;
-            layers = <BASE>;
-        };
-
-        // W+F+P = Caps Word
-        combo_capsword {
-            timeout-ms = <50>;
-            key-positions = <1 2 3>;
-            bindings = <&caps_word>;
+            key-positions = <16 17 18>;
+            bindings = <&kp ENTER>;
             layers = <BASE>;
         };
         
@@ -121,11 +115,19 @@
             layers = <BASE>;
         };
         
+        // L+U = Grave/Backtick
+        combo_grave {
+            timeout-ms = <50>;
+            key-positions = <6 7>;
+            bindings = <&kp GRAVE>;
+            layers = <BASE>;
+        };
+        
         // W+F = OSM(LSHFT)
         combo_lshift {
             timeout-ms = <50>;
             key-positions = <1 2>;
-            bindings = <&sk LSHFT>;
+            bindings = <&skq LSHFT>;
             layers = <BASE>;
         };
         
@@ -133,7 +135,7 @@
         combo_rshift {
             timeout-ms = <50>;
             key-positions = <7 8>;
-            bindings = <&sk RSHFT>;
+            bindings = <&skq RSHFT>;
             layers = <BASE>;
         };
         
@@ -150,6 +152,14 @@
             timeout-ms = <50>;
             key-positions = <15 16>;
             bindings = <&sl SYM>;
+            layers = <BASE>;
+        };
+
+        // W+F+P = Caps Word
+        combo_capsword {
+            timeout-ms = <50>;
+            key-positions = <1 2 3>;
+            bindings = <&caps_word>;
             layers = <BASE>;
         };
 };
