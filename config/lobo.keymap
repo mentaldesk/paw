@@ -30,7 +30,7 @@
         };
 
         // Bottom row shift mods (no quick-tap + shorter tapping term)
-        bml_shft: bottom_mods_left_no_quicktap {
+        bml_shft: bottom_mods_left_shift {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             tapping-term-ms = <150>;
@@ -42,7 +42,7 @@
             hold-trigger-on-release;
         };
 
-        bmr_shft: bottom_mods_right_no_quicktap {
+        bmr_shft: bottom_mods_right_shift {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             tapping-term-ms = <150>;
@@ -58,7 +58,7 @@
         bml_no_qt: bottom_mods_left_no_quicktap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <180>;
+            tapping-term-ms = <200>;
             quick-tap-ms = <0>;
             require-prior-idle-ms = <150>;
             flavor = "balanced";
@@ -70,7 +70,7 @@
         bmr_no_qt: bottom_mods_right_no_quicktap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <180>;
+            tapping-term-ms = <200>;
             quick-tap-ms = <0>;
             require-prior-idle-ms = <150>;
             flavor = "balanced";
@@ -83,7 +83,7 @@
         bml: bottom_mods_left {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <150>;
+            tapping-term-ms = <200>;
             quick-tap-ms = <125>;
             require-prior-idle-ms = <150>;
             flavor = "balanced";
@@ -94,7 +94,7 @@
         bmr: bottom_mods_right {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <150>;
+            tapping-term-ms = <200>;
             quick-tap-ms = <125>;
             require-prior-idle-ms = <150>;
             flavor = "balanced";
