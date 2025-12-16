@@ -175,18 +175,18 @@
             layers = <BASE>;
         };
 
-        // S+T = OSM Left Shift
+        // P+B = OSM Left Shift
         combo_osm_lshift {
             timeout-ms = <50>;
-            key-positions = <11 12>;
+            key-positions = <3 4>;
             bindings = <&skq LSHFT>;
             layers = <BASE>;
         };
 
-        // N+E = OSM Right Shift
+        // J+L = OSM Right Shift
         combo_osm_rshift {
             timeout-ms = <50>;
-            key-positions = <16 17>;
+            key-positions = <5 6>;
             bindings = <&skq RSHFT>;
             layers = <BASE>;
         };
