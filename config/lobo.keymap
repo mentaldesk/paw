@@ -175,6 +175,22 @@
             layers = <BASE>;
         };
 
+        // F+S = OSM Left Shift
+        combo_osm_lshift {
+            timeout-ms = <50>;
+            key-positions = <2 12>;
+            bindings = <&skq LSHFT>;
+            layers = <BASE>;
+        };
+
+        // U+E = OSM Right Shift
+        combo_osm_rshift {
+            timeout-ms = <50>;
+            key-positions = <7 17>;
+            bindings = <&skq RSHFT>;
+            layers = <BASE>;
+        };
+
         // W+F+P = Caps Word
         combo_capsword {
             timeout-ms = <50>;
