@@ -143,18 +143,18 @@
             layers = <BASE>;
         };
         
-        // F+P = Tab
+        // P+B = Tab
         combo_tab {
             timeout-ms = <50>;
-            key-positions = <2 3>;
+            key-positions = <3 4>;
             bindings = <&kp TAB>;
             layers = <BASE>;
         };
         
-        // L+U = Grave/Backtick
+        // J+L = Grave/Backtick
         combo_grave {
             timeout-ms = <50>;
-            key-positions = <6 7>;
+            key-positions = <5 6>;
             bindings = <&kp GRAVE>;
             layers = <BASE>;
         };
@@ -175,18 +175,18 @@
             layers = <BASE>;
         };
 
-        // P+B = OSM Left Shift
+        // FP = OSM Left Shift
         combo_osm_lshift {
             timeout-ms = <50>;
-            key-positions = <3 4>;
+            key-positions = <2 3>;
             bindings = <&skq LSHFT>;
             layers = <BASE>;
         };
 
-        // J+L = OSM Right Shift
+        // L+U = OSM Right Shift
         combo_osm_rshift {
             timeout-ms = <50>;
-            key-positions = <5 6>;
+            key-positions = <6 7>;
             bindings = <&skq RSHFT>;
             layers = <BASE>;
         };
