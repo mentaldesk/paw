@@ -1,8 +1,8 @@
 # Copyright (c) 2025 James Crosswell
 # SPDX-License-Identifier: MIT
 
-config SHIELD_LOBO_LEFT
-    def_bool $(shields_list_contains,lobo_left)
+config SHIELD_PAW_LEFT
+    def_bool $(shields_list_contains,paw_left)
 
-config SHIELD_LOBO_RIGHT
-    def_bool $(shields_list_contains,lobo_right)
+config SHIELD_PAW_RIGHT
+    def_bool $(shields_list_contains,paw_right)

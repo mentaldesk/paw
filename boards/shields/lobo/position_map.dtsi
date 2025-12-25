@@ -1,5 +1,5 @@
 / {
-    layouts_lobo_position_map: layouts_lobo_position_map {
+    layouts_paw_position_map: layouts_paw_position_map {
         compatible = "zmk,physical-layout-position-map";
 
         complete;

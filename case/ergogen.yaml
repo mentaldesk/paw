@@ -149,7 +149,7 @@ outlines:
       - operation: subtract
         name: switches
 pcbs:
-  lobo:
+  paw:
     outlines:
       main:
         outline: lhs_outline

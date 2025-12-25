@@ -15,7 +15,7 @@
 
 / {
     chosen {
-        zmk,physical-layout = &lobo_5col_layout;
+        zmk,physical-layout = &paw_5col_layout;
     };
 
     behaviors {

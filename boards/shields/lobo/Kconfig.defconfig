@@ -1,14 +1,14 @@
-if SHIELD_LOBO_LEFT
+if SHIELD_PAW_LEFT
 
 config ZMK_KEYBOARD_NAME
-    default "Lobo"
+    default "Paw"
 
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
 
 endif
 
-if SHIELD_LOBO_LEFT || SHIELD_LOBO_RIGHT
+if SHIELD_PAW_LEFT || SHIELD_PAW_RIGHT
 
 config ZMK_SPLIT
     default y
