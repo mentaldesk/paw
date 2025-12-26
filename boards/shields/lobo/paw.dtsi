@@ -48,12 +48,18 @@ RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4)  RC(2,5) RC(2,6) RC(2,7) RC(2,8) RC(2,9)
             ;
 
     };
+
+    tps43_input: tps43_input {
+        compatible = "zmk,input-listener";
+        device = <&tps43>;
+    };
 };
 
 &pro_micro_i2c {
     status = "okay";
 
     oled: ssd1306@3c {
+        status = "okay";
         compatible = "solomon,ssd1306fb";
         reg = <0x3c>;
         width = <128>;
@@ -67,5 +73,28 @@ RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4)  RC(2,5) RC(2,6) RC(2,7) RC(2,8) RC(2,9)
         com-sequential;
         inversion-on;
         prechargep = <0x22>;
+    };
+
+    tps43: iqs5xx@74 {
+        status = "okay";
+        compatible = "azoteq,iqs5xx";
+        reg = <0x74>;
+
+        one-finger-tap;
+        press-and-hold;
+        press-and-hold-time = <250>;
+        two-finger-tap;
+
+        scroll;
+        natural-scroll-y;
+        natural-scroll-x;
+
+        bottom-beta = <5>;
+        stationary-threshold = <5>;
+
+        switch-xy;
+
+        reset-gpios = <&pro_micro 8 GPIO_ACTIVE_LOW>; /* P1.04 */
+        rdy-gpios = <&pro_micro 9 GPIO_ACTIVE_HIGH>; /* P1.06 */
     };
 };
