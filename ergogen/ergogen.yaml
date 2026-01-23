@@ -7,11 +7,8 @@ units:
   ky: cy + 1
   px: kx + 1
   py: ky + 1
-  # This is way more space than the screws need... allows room for
-  # an M2 heatset insert (3mm) + 2mm walls encasing this. The idea
-  # is that this would go on the bottom of the keyplate and the 
-  # screws come in from the undeside of the case, so they're hidden
-  screwSize: 3.5
+  pogo_pad_spacing: 5
+  mcu_padding: 22
 points:
   zones:
     matrix:
@@ -24,12 +21,12 @@ points:
         pinky:
           key:
             splay: 16
-            spread: cx
+            spread: px
         ring:
           key:
             splay: -1
             stagger: 10
-            spread: px
+            spread: kx
         middle:
           key:
             splay: -4
@@ -46,27 +43,31 @@ points:
             stagger: -0.2ky
       rows:
         bottom:
+          row_net: P100
         home:
+          row_net: P024
         top:
+          row_net: P022
     thumbs:
       anchor:
-        ref: matrix_index_bottom
-        shift: [1.5kx, -1.5ky]
+        ref: matrix_inner_bottom
+        shift: [16, -ky]
       columns:
         mod1:
           key:
-            splay: -25
+            splay: -15
             #asym: source
         mod2:
           key:
-            spread: 21
+            spread: kx
             stagger: -1.5
-            splay: -10
+            splay: -5
       rows:
         cluster:
-  #mirror: &mirror
-  #  ref: thumbs_mod3_cluster
-  #  distance: 1.5kx          
+          row_net: P011
+  mirror: &mirror
+    ref: thumbs_mod2_cluster
+    distance: 1.5kx          
 outlines:
     switches:
       - what: rectangle
@@ -74,53 +75,83 @@ outlines:
         bound: false
         size: [15,15]
         
-    lhs_outline:
+    pcb_outline:
       - what: polygon
         operation: stack
-        fillet: 4
+        fillet: 1
         # Order matters: go clockwise around the outside
         points:
           # Top edge (outermost tops)
           - ref: matrix_pinky_top    
-            shift: [-0.55kx,  0.55ky]
+            shift: [-0.5cx,  0.5cy]
+          - ref: matrix_pinky_top    
+            shift: [0.5cx,  0.5cy]
           - ref: matrix_ring_top     
-            shift: [-0.55kx,  0.55ky]
+            shift: [-0.5cx,  0.5cy]
+          - ref: matrix_ring_top     
+            shift: [0.5cx,  0.5cy]
           - ref: matrix_middle_top   
-            shift: [-0.50kx,  0.55ky]
+            shift: [-0.5cx,  0.5cy]
           - ref: matrix_middle_top   
-            shift: [.50kx,  0.55ky]
+            shift: [.5cx,  0.5cy]
+
+          - ref: matrix_index_top
+            shift: [ -0.5cx,  0.5cy + pogo_pad_spacing]
+          - ref: matrix_index_top
+            shift: [ 0.5cx + cx,  0.5cy + pogo_pad_spacing]
 
           # Make space for the battery, MCU and OLED
           - ref: matrix_inner_top
-            shift: [ 0.55kx + 24,  1ky]
+            shift: [ 0.5cx,  1.5cy]
           - ref: matrix_inner_top
-            shift: [ 0.55kx + 24,  -60]
+            shift: [ 0.5cx + mcu_padding, 1.5cy]
+          - ref: matrix_inner_top
+            shift: [ 0.5cx + mcu_padding, 1.5cy]
 
-
+          # Cut-out for the power switch
+          - ref: matrix_inner_bottom
+            shift: [ 0.5cx + mcu_padding,  0.5cy - 5]
+          - ref: matrix_inner_bottom
+            shift: [ 0.5cx + 4,  0.5cy - 5]
+          - ref: matrix_inner_bottom
+            shift: [ 0.5cx + 4, 0.5cy - 5 - 11.5]
+            
           # Down into the thumb cluster
-          - ref: thumbs_mod2_cluster 
-            shift: [ 0.55kx,  0.55ky]
-          - ref: thumbs_mod2_cluster 
-            shift: [ 0.55kx,  -0.55ky]
-          - ref: thumbs_mod2_cluster 
-            shift: [ -0.55kx,  -0.55ky]
           - ref: thumbs_mod1_cluster 
-            shift: [0.55kx, -0.55ky]
+            shift: [0.5cx, 0.5cy]
+          - ref: thumbs_mod2_cluster 
+            shift: [ 0.5cx,  0.5cy]
+          - ref: thumbs_mod2_cluster 
+            shift: [ 0.5cx,  -0.5cy]
+          - ref: thumbs_mod2_cluster 
+            shift: [ -0.5cx,  -0.5cy]
           - ref: thumbs_mod1_cluster 
-            shift: [-0.55kx, -0.55ky]
+            shift: [-0.5cx, -0.5cy]
 
           # Back up the bottom edge of the matrix
           - ref: matrix_inner_bottom  
-            shift: [-0.55kx, -0.55ky]
+            shift: [0.45cx, -0.55cy]
+          - ref: matrix_inner_bottom  
+            shift: [-0.5cx, -0.5cy]
+          - ref: matrix_index_bottom  
+            shift: [0.45cx, -0.5cy]
+          - ref: matrix_index_bottom  
+            shift: [-0.5cx, -0.5cy]
+          - ref: matrix_middle_bottom  
+            shift: [0.5cx, -0.5cy]
+          - ref: matrix_middle_bottom  
+            shift: [-0.5cx, -0.5cy]
           - ref: matrix_ring_bottom  
-            shift: [-0.25kx, -0.55ky]
+            shift: [0.5cx, -0.5cy]
+          - ref: matrix_ring_bottom  
+            shift: [-0.5cx, -0.5cy]
           - ref: matrix_pinky_bottom 
-            shift: [0.50kx, -0.55ky]
+            shift: [0.5cx, -0.5cy]
           - ref: matrix_pinky_bottom 
-            shift: [-0.50kx, -0.55ky]
+            shift: [-0.5cx, -0.5cy]
 
     lhs:
-      - name: lhs_outline
+      - name: pcb_outline
       - operation: subtract
         name: switches
 
@@ -138,15 +169,15 @@ pcbs:
   board:
     outlines:
       main:
-        outline: lhs_outline
+        outline: pcb_outline
     footprints:
       choc_hotswap:
         what: choc
         where: true
         params:
-          keycaps: true
+          keycaps: false
           reverse: false
-          hotswap: true
+          hotswap: false
           from: "{{column_net}}"
           to: "{{colrow}}"
       diode:
@@ -156,47 +187,11 @@ pcbs:
           from: "{{colrow}}"
           to: "{{row_net}}"
         adjust:
-          shift: [0, -5]
-      promicro:
-        what: promicro
-        params:
-          orientation: "down"
+          shift: [7.5, 2]
+          rotate: 90
+      mcu:
+        what: nice_nano_2
         where:
           ref: matrix_inner_top
-          shift: [kx + 5, 0.0ky]
-          rotate: -92
-      oled:
-        what: oled
-        params:
-          side: "F"
-          SDA: P2
-          SCL: P3
-        where:
-          ref: matrix_inner_top
-          shift: [kx + 10, -19]
+          shift: [kx + 1, 7.2]
           rotate: -90
-      reset:
-        what: button
-        params:
-          from: GND
-          to: RST
-        where:
-          ref: matrix_index_top
-          shift: [0, 0.5cy + 5]
-      jst:
-        what: jstph
-        params:
-          pos: B+
-          neg: B-
-        where:
-          ref: matrix_inner_top
-          shift: [0cx, 0.5cy + 5]
-          rotate: -90
-      power:
-        what: button
-        params:
-          from: GND
-          to: RST
-        where:
-          ref: matrix_inner_top
-          shift: [0.5cx, 0.5cy + 5]
