@@ -2,16 +2,17 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
-#define BASE 0
-#define SYM  1
-#define BRAC 2
-#define NAV  3
-#define FUNC 4
-#define NUM  5
-#define WIN  6
-#define MEDIA 7
-#define BT 8
-#define SWITCH 9
+#define BASE    0
+#define MIRROR  1
+#define SYM     2
+#define BRAC    3
+#define NAV     4
+#define FUNC    5
+#define NUM     6
+#define WIN     7
+#define MEDIA   8
+#define BT      9
+#define SWITCH  10
 
 / {
     chosen {
@@ -175,6 +176,14 @@
             layers = <BASE>;
         };
 
+        // T+V = OSM(Mirror)
+        combo_mirror {
+            timeout-ms = <50>;
+            key-positions = <13 23>;
+            bindings = <&sl MIRROR>;
+            layers = <BASE>;
+        };
+
         // FP = OSM Left Shift
         combo_osm_lshift {
             timeout-ms = <50>;
@@ -250,6 +259,18 @@
             >;
         };
 
+        mirror_layer {
+    // -----------------------------------------------------------------------------------------
+    // Mirrors the Base layer by swapping left/right halves.
+            display-name = "Mirror";
+            bindings = <
+       &kp J        &kp L        &lt SWITCH U  &lt MEDIA Y  &kp SQT          &kp Q        &lt WIN W    &kp F        &lt NUM P    &lt BT B
+       &kp M        &kp N        &kp E        &kp I        &kp O            &kp A        &kp R        &kp S        &kp T        &kp G
+       &kp K        &bmr_no_qt RGUI H  &bmr_no_qt RALT COMMA &bmr RCTRL DOT &bmr_shft RSHFT SLASH  &bml_shft LSHFT X &bml LCTRL C &bml LALT D &bml_no_qt LGUI V  &kp Z
+                    &lt_qt FUNC BSPC &lt SYM SPACE &osm_meh LC(LA(LSHFT)) RSHFT  &osm_meh LC(LA(LSHFT)) LSHFT  &lt BRAC SPACE &lt_qt NAV DEL
+            >;
+        };
+
         symbol_layer {
 // -----------------------------------------------------------------------------------------
 // | RST |  _  |  *  |  ~  |     |     |     |     |     |     |     |
@@ -269,13 +290,13 @@
 // -----------------------------------------------------------------------------------------
 // | RST |     |     |     |     |     |     |  {  |  }  |  $  |     |
 // |     |     |     |     |     |     |  #  |  (  |  )  |  :  |  @  |
-// |     |     |     |     |     |     |     |  [  |  ]  |  ;  |  \  |
+// |     |     |     |     |     |     |     |  [  |  ]  |  ;  |     |
 //             |     |     |     |     |     |     |
             display-name = "Bracket";
             bindings = <
    &to BASE    &trans       &trans       &trans       &trans           &trans       &kp LBRC     &kp RBRC     &kp DLLR     &trans
    &trans      &trans       &trans       &trans       &trans           &kp HASH     &kp LPAR     &kp RPAR     &kp COLON    &kp AT
-   &trans      &trans       &trans       &trans       &trans           &trans       &kp LBKT     &kp RBKT     &kp SEMI     &kp BSLH
+   &trans      &trans       &trans       &trans       &trans           &trans       &kp LBKT     &kp RBKT     &kp SEMI     &kp trans
                             &trans       &trans       &trans           &trans       &trans       &trans
             >;
         };

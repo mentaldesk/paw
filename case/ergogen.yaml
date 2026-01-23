@@ -19,21 +19,20 @@ points:
       anchor:
         shift: [80, -190]
       key:
-        padding: 1kx
-        spread: 1kx
+        padding: cy
       columns:
         pinky:
           key:
             splay: 16
+            spread: cx
         ring:
           key:
-            splay: -4
-
+            splay: -1
             stagger: 10
-            spread: 1px + 1
+            spread: px
         middle:
           key:
-            splay: -5
+            splay: -4
             stagger: 6
             spread: px
         index:
@@ -43,31 +42,26 @@ points:
             spread: px
         inner:
           key:
+            spread: cx
             stagger: -0.2ky
       rows:
         bottom:
         home:
         top:
     thumbs:
-      key:
-        padding: 1ky
-        spread: 1kx
       anchor:
         ref: matrix_index_bottom
-        shift: [0.35kx, -1.3ky]
+        shift: [1.5kx, -1.5ky]
       columns:
         mod1:
           key:
-            splay: -11
+            splay: -25
             #asym: source
         mod2:
           key:
+            spread: 21
+            stagger: -1.5
             splay: -10
-            shift: [2, 0.25ky - 6]
-        mod3:
-          key:
-            splay: -10
-            shift: [4, -4]
       rows:
         cluster:
   #mirror: &mirror
@@ -78,7 +72,7 @@ outlines:
       - what: rectangle
         where: true
         bound: false
-        size: [14,14]
+        size: [15,15]
         
     lhs_outline:
       - what: polygon
@@ -89,34 +83,26 @@ outlines:
           # Top edge (outermost tops)
           - ref: matrix_pinky_top    
             shift: [-0.55kx,  0.55ky]
-          - ref: matrix_pinky_top    
-            shift: [0.55kx,  0.55ky]
           - ref: matrix_ring_top     
             shift: [-0.55kx,  0.55ky]
-          - ref: matrix_ring_top     
-            shift: [0.55kx,  0.55ky]
           - ref: matrix_middle_top   
             shift: [-0.50kx,  0.55ky]
           - ref: matrix_middle_top   
             shift: [.50kx,  0.55ky]
-          - ref: matrix_index_top    
-            shift: [-0.35kx,  0.60ky]
-          - ref: matrix_inner_top    
-            shift: [ .55kx,  0.8ky]
 
           # Make space for the battery, MCU and OLED
           - ref: matrix_inner_top
-            shift: [ 0.55kx + 20,  0.8ky]
+            shift: [ 0.55kx + 24,  1ky]
           - ref: matrix_inner_top
-            shift: [ 0.55kx + 20,  -60]
+            shift: [ 0.55kx + 24,  -60]
 
 
           # Down into the thumb cluster
-          - ref: thumbs_mod3_cluster 
+          - ref: thumbs_mod2_cluster 
             shift: [ 0.55kx,  0.55ky]
-          - ref: thumbs_mod3_cluster 
+          - ref: thumbs_mod2_cluster 
             shift: [ 0.55kx,  -0.55ky]
-          - ref: thumbs_mod3_cluster 
+          - ref: thumbs_mod2_cluster 
             shift: [ -0.55kx,  -0.55ky]
           - ref: thumbs_mod1_cluster 
             shift: [0.55kx, -0.55ky]
@@ -124,7 +110,7 @@ outlines:
             shift: [-0.55kx, -0.55ky]
 
           # Back up the bottom edge of the matrix
-          - ref: matrix_index_bottom  
+          - ref: matrix_inner_bottom  
             shift: [-0.55kx, -0.55ky]
           - ref: matrix_ring_bottom  
             shift: [-0.25kx, -0.55ky]
@@ -149,7 +135,7 @@ outlines:
       - operation: subtract
         name: switches
 pcbs:
-  paw:
+  board:
     outlines:
       main:
         outline: lhs_outline
@@ -159,7 +145,7 @@ pcbs:
         where: true
         params:
           keycaps: true
-          reverse: true
+          reverse: false
           hotswap: true
           from: "{{column_net}}"
           to: "{{colrow}}"
@@ -177,5 +163,40 @@ pcbs:
           orientation: "down"
         where:
           ref: matrix_inner_top
-          shift: [kx,-0.5ky]
+          shift: [kx + 5, 0.0ky]
+          rotate: -92
+      oled:
+        what: oled
+        params:
+          side: "F"
+          SDA: P2
+          SCL: P3
+        where:
+          ref: matrix_inner_top
+          shift: [kx + 10, -19]
           rotate: -90
+      reset:
+        what: button
+        params:
+          from: GND
+          to: RST
+        where:
+          ref: matrix_index_top
+          shift: [0, 0.5cy + 5]
+      jst:
+        what: jstph
+        params:
+          pos: B+
+          neg: B-
+        where:
+          ref: matrix_inner_top
+          shift: [0cx, 0.5cy + 5]
+          rotate: -90
+      power:
+        what: button
+        params:
+          from: GND
+          to: RST
+        where:
+          ref: matrix_inner_top
+          shift: [0.5cx, 0.5cy + 5]
