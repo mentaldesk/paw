@@ -11,6 +11,7 @@ units:
   half_key_y: 0.5cy
   thumb_corridor: 4
   power_switch_width: 11.5
+  battery_connector_offset: 14
   pogo_pad_spacing: 5
   mcu_padding: 22
 points:
@@ -208,8 +209,19 @@ pcbs:
           ref: matrix_inner_top
           shift: [kx + 1, 7.2]
           rotate: -90
+      trackpad_connector:
+        what: trackpad_connector_5p_th
+        params:
+          P1: P106
+          P2: GND
+          P3: VCC
+          P4: P020
+          P5: P017
+        where:
+          ref: matrix_index_top
+          shift: [half_key_x, half_key_y + 3]
       reset_switch:
-        what: button
+        what: button_4p_65_45
         params:
           from: GND
           to: RST
@@ -221,26 +233,24 @@ pcbs:
         params:
           BAT_P: PAD_IN
           BAT_N: B-
-          reversible: true
+          reversible: false
           side: B
         where:
           ref: matrix_inner_home
-          shift: [half_key_x + thumb_corridor + 12, -half_key_y / 3]
+          shift: [half_key_x + battery_connector_offset, -half_key_y / 3]
           rotate: -90
-      power_pad_in:
-        what: via
+      power_pads:
+        what: generic_connector
         params:
-          net: PAD_IN
+          show_labels: false
+          pin_count: 2
+          side: F
+          P1: PAD_IN
+          P2: B+
         where:
           ref: matrix_inner_home
           shift: [half_key_x + thumb_corridor + mcu_padding / 2 + 4, -half_key_y + 6.5]
-      power_pad_out:
-        what: via
-        params:
-          net: B+
-        where:
-          ref: matrix_inner_home
-          shift: [half_key_x + thumb_corridor + mcu_padding / 2 + 6, -half_key_y + 1.5]
+          rotate: 65
   paw_right:
     outlines:
       main:
@@ -275,3 +285,48 @@ pcbs:
           # to reflect the fact that it's on the other side of the keyboad
           # (actually the rest of the keyboard is flipped in this case)
           orientation: 'up'
+      trackpad_connector:
+        what: trackpad_connector_5p_th
+        params:
+          P1: P106
+          P2: GND
+          P3: VCC
+          P4: P020
+          P5: P017
+          side: B
+          flip: true
+        where:
+          ref: matrix_index_top
+          shift: [half_key_x, half_key_y + 3]
+      reset_switch:
+        what: button_4p_65_45
+        params:
+          from: GND
+          to: RST
+          side: B
+        where:
+          ref: matrix_inner_home
+          shift: [half_key_x + mcu_padding / 2, half_key_y / 2]
+      battery_connector:
+        what: battery_connector_jst_ph_2
+        params:
+          BAT_P: PAD_IN
+          BAT_N: B-
+          reversible: false
+          side: F
+        where:
+          ref: matrix_inner_home
+          shift: [half_key_x + battery_connector_offset, -half_key_y / 3]
+          rotate: -90
+      power_pads:
+        what: generic_connector
+        params:
+          show_labels: false
+          pin_count: 2
+          side: B
+          P1: PAD_IN
+          P2: B+
+        where:
+          ref: matrix_inner_home
+          shift: [half_key_x + thumb_corridor + mcu_padding / 2 + 4, -half_key_y + 6.5]
+          rotate: 65
