@@ -7,6 +7,10 @@ units:
   ky: cy + 1
   px: kx + 1
   py: ky + 1
+  half_key_x: 0.5cx
+  half_key_y: 0.5cy
+  thumb_corridor: 4
+  power_switch_width: 11.5
   pogo_pad_spacing: 5
   mcu_padding: 22
 points:
@@ -22,25 +26,35 @@ points:
           key:
             splay: 16
             spread: px
+            column_net: P029
+            mirror.column_net: P111
         ring:
           key:
             splay: -1
             stagger: 10
             spread: kx
+            column_net: P002
+            mirror.column_net: P113
         middle:
           key:
             splay: -4
             stagger: 6
             spread: px
+            column_net: P115
+            mirror.column_net: P115
         index:
           key:
             splay: -4
             stagger: -8
             spread: px
+            column_net: P113
+            mirror.column_net: P002
         inner:
           key:
             spread: cx
             stagger: -0.2ky
+            column_net: P111
+            mirror.column_net: P029
       rows:
         bottom:
           row_net: P100
@@ -65,9 +79,6 @@ points:
       rows:
         cluster:
           row_net: P011
-  mirror: &mirror
-    ref: thumbs_mod2_cluster
-    distance: 1.5kx          
 outlines:
     switches:
       - what: rectangle
@@ -83,74 +94,76 @@ outlines:
         points:
           # Top edge (outermost tops)
           - ref: matrix_pinky_top    
-            shift: [-0.5cx,  0.5cy]
+            shift: [-half_key_x,  half_key_y]
           - ref: matrix_pinky_top    
-            shift: [0.5cx,  0.5cy]
+            shift: [half_key_x,  half_key_y]
           - ref: matrix_ring_top     
-            shift: [-0.5cx,  0.5cy]
+            shift: [-half_key_x,  half_key_y]
           - ref: matrix_ring_top     
-            shift: [0.5cx,  0.5cy]
+            shift: [half_key_x,  half_key_y]
           - ref: matrix_middle_top   
-            shift: [-0.5cx,  0.5cy]
+            shift: [-half_key_x,  half_key_y]
           - ref: matrix_middle_top   
-            shift: [.5cx,  0.5cy]
+            shift: [half_key_x,  half_key_y]
 
           - ref: matrix_index_top
-            shift: [ -0.5cx,  0.5cy + pogo_pad_spacing]
+            shift: [ -half_key_x,  half_key_y + pogo_pad_spacing]
           - ref: matrix_index_top
-            shift: [ 0.5cx + cx,  0.5cy + pogo_pad_spacing]
+            shift: [ half_key_x + cx,  half_key_y + pogo_pad_spacing]
 
           # Make space for the battery, MCU and OLED
           - ref: matrix_inner_top
-            shift: [ 0.5cx,  1.5cy]
+            shift: [ half_key_x,  1.5cy]
           - ref: matrix_inner_top
-            shift: [ 0.5cx + mcu_padding, 1.5cy]
+            shift: [ half_key_x + mcu_padding, 1.5cy]
           - ref: matrix_inner_top
-            shift: [ 0.5cx + mcu_padding, 1.5cy]
+            shift: [ half_key_x + mcu_padding, 1.5cy]
 
           # Cut-out for the power switch
+          #- ref: matrix_inner_bottom
+          #  shift: [ half_key_x + 4,  half_key_y + 0]
           - ref: matrix_inner_bottom
-            shift: [ 0.5cx + mcu_padding,  0.5cy - 5]
+            shift: [ half_key_x + mcu_padding,  half_key_y - 0]
           - ref: matrix_inner_bottom
-            shift: [ 0.5cx + 4,  0.5cy - 5]
+            shift: [ half_key_x + thumb_corridor,  half_key_y - 0]
           - ref: matrix_inner_bottom
-            shift: [ 0.5cx + 4, 0.5cy - 5 - 11.5]
+            shift: [ half_key_x + thumb_corridor, half_key_y - 0 - power_switch_width]
             
           # Down into the thumb cluster
           - ref: thumbs_mod1_cluster 
-            shift: [0.5cx, 0.5cy]
+            shift: [half_key_x, half_key_y]
           - ref: thumbs_mod2_cluster 
-            shift: [ 0.5cx,  0.5cy]
+            shift: [ half_key_x,  half_key_y]
           - ref: thumbs_mod2_cluster 
-            shift: [ 0.5cx,  -0.5cy]
+            shift: [ half_key_x,  -half_key_y]
           - ref: thumbs_mod2_cluster 
-            shift: [ -0.5cx,  -0.5cy]
+            shift: [ -half_key_x,  -half_key_y]
           - ref: thumbs_mod1_cluster 
-            shift: [-0.5cx, -0.5cy]
+            shift: [-half_key_x, -half_key_y]
 
           # Back up the bottom edge of the matrix
           - ref: matrix_inner_bottom  
             shift: [0.45cx, -0.55cy]
           - ref: matrix_inner_bottom  
-            shift: [-0.5cx, -0.5cy]
+            shift: [-half_key_x, -half_key_y]
           - ref: matrix_index_bottom  
-            shift: [0.45cx, -0.5cy]
+            shift: [0.45cx, -half_key_y]
           - ref: matrix_index_bottom  
-            shift: [-0.5cx, -0.5cy]
+            shift: [-half_key_x, -half_key_y]
           - ref: matrix_middle_bottom  
-            shift: [0.5cx, -0.5cy]
+            shift: [half_key_x, -half_key_y]
           - ref: matrix_middle_bottom  
-            shift: [-0.5cx, -0.5cy]
+            shift: [-half_key_x, -half_key_y]
           - ref: matrix_ring_bottom  
-            shift: [0.5cx, -0.5cy]
+            shift: [half_key_x, -half_key_y]
           - ref: matrix_ring_bottom  
-            shift: [-0.5cx, -0.5cy]
+            shift: [-half_key_x, -half_key_y]
           - ref: matrix_pinky_bottom 
-            shift: [0.5cx, -0.5cy]
+            shift: [half_key_x, -half_key_y]
           - ref: matrix_pinky_bottom 
-            shift: [-0.5cx, -0.5cy]
+            shift: [-half_key_x, -half_key_y]
 
-    lhs:
+    combined:
       - name: pcb_outline
       - operation: subtract
         name: switches
@@ -166,7 +179,7 @@ outlines:
       - operation: subtract
         name: switches
 pcbs:
-  board:
+  paw_left:
     outlines:
       main:
         outline: pcb_outline
@@ -195,3 +208,70 @@ pcbs:
           ref: matrix_inner_top
           shift: [kx + 1, 7.2]
           rotate: -90
+      reset_switch:
+        what: button
+        params:
+          from: GND
+          to: RST
+        where:
+          ref: matrix_inner_home
+          shift: [half_key_x + mcu_padding / 2, half_key_y / 2]
+      battery_connector:
+        what: battery_connector_jst_ph_2
+        params:
+          BAT_P: PAD_IN
+          BAT_N: B-
+          reversible: true
+          side: B
+        where:
+          ref: matrix_inner_home
+          shift: [half_key_x + thumb_corridor + 12, -half_key_y / 3]
+          rotate: -90
+      power_pad_in:
+        what: via
+        params:
+          net: PAD_IN
+        where:
+          ref: matrix_inner_home
+          shift: [half_key_x + thumb_corridor + mcu_padding / 2 + 4, -half_key_y + 6.5]
+      power_pad_out:
+        what: via
+        params:
+          net: B+
+        where:
+          ref: matrix_inner_home
+          shift: [half_key_x + thumb_corridor + mcu_padding / 2 + 6, -half_key_y + 1.5]
+  paw_right:
+    outlines:
+      main:
+        outline: pcb_outline
+    footprints:
+      choc_hotswap:
+        what: choc
+        where: true
+        params:
+          keycaps: false
+          reverse: false
+          hotswap: false
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+      diode:
+        what: diode
+        where: true
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [7.5, 2]
+          rotate: 90
+      mcu:
+        what: nice_nano_2
+        where:
+          ref: matrix_inner_top
+          shift: [kx + 1, 7.2]
+          rotate: -90
+        params:
+          # It won't literally be up... this just helps us flip the pins
+          # to reflect the fact that it's on the other side of the keyboad
+          # (actually the rest of the keyboard is flipped in this case)
+          orientation: 'up'
