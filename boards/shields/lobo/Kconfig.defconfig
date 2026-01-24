@@ -13,10 +13,13 @@ if SHIELD_PAW_LEFT || SHIELD_PAW_RIGHT
 config ZMK_SPLIT
     default y
 
-if ZMK_DISPLAY
-
 config I2C
-    default y
+	default y
+      
+config ZMK_POINTING
+	default y
+
+if ZMK_DISPLAY
 
 config SSD1306
     default y
