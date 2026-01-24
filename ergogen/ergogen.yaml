@@ -71,12 +71,15 @@ points:
         mod1:
           key:
             splay: -15
-            #asym: source
+            column_net: P113
+            mirror.column_net: P002
         mod2:
           key:
             spread: kx
             stagger: -1.5
             splay: -5
+            column_net: P111
+            mirror.column_net: P029
       rows:
         cluster:
           row_net: P011
