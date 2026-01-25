@@ -3,11 +3,14 @@
 //  orientation: default is down
 //    if down, power led will face the pcb
 //    if up, power led will face away from pcb
+//  debug_pins: default is false
+//    if true, also includes the SWD/debug header pins (P101, P102, P107)
 
 module.exports = {
   params: {
     designator: 'MCU',
     orientation: 'down',
+    debug_pins: false,
     BPLUS: {type: 'net', value: 'B+'},
     RAW: {type: 'net', value: 'RAW'},
     GND: {type: 'net', value: 'GND'},
@@ -146,9 +149,11 @@ module.exports = {
         (pad 25 thru_hole circle (at -13.97 ${def_pos}7.62) (size 1.7526 1.7526) (drill 1.0922) (layers *.Cu *.SilkS *.Mask) ${p.RAW.str})
         (pad 26 thru_hole circle (at -16.51 ${def_pos}7.62) (size 1.7526 1.7526) (drill 1.0922) (layers *.Cu *.SilkS *.Mask) ${p.BPLUS.str})
 
+        ${p.debug_pins ? `
         (pad 31 thru_hole circle (at 8.89 5.08) (size 1.7526 1.7526) (drill 1.0922) (layers *.Cu *.SilkS *.Mask) ${p.P101.str})
         (pad 32 thru_hole circle (at 8.89 2.54) (size 1.7526 1.7526) (drill 1.0922) (layers *.Cu *.SilkS *.Mask) ${p.P102.str})
         (pad 33 thru_hole circle (at 8.89 0) (size 1.7526 1.7526) (drill 1.0922) (layers *.Cu *.SilkS *.Mask) ${p.P107.str})
+        ` : ''}
         `
       }
       if(p.orientation == 'down') {

@@ -12,12 +12,14 @@ units:
   thumb_corridor: 10
   power_switch_width: 11.5
   battery_connector_offset: 14
-  pogo_pad_spacing: 5
+  pogo_pad_spacing: 6.5
   mcu_width: 18
   mcu_padding: 3
   mcu_space: mcu_width + mcu_padding * 2
   doide_x_offset: 8.75
   doide_y_offset: 2
+  pcb_m2_radius: 1.1 # Space for an M2 screw with 0.1mm tolerance
+  pcb_screw_y_offset: 5
 points:
   zones:
     matrix:
@@ -104,11 +106,9 @@ outlines:
           - ref: matrix_pinky_top    
             shift: [-half_key_x,  half_key_y]
           - ref: matrix_pinky_top    
-            shift: [half_key_x,  half_key_y]
+            shift: [0,  half_key_y]
           - ref: matrix_ring_top     
             shift: [-half_key_x,  half_key_y]
-          - ref: matrix_ring_top     
-            shift: [half_key_x,  half_key_y]
           - ref: matrix_middle_top   
             shift: [-half_key_x,  half_key_y]
           - ref: matrix_middle_top   
@@ -151,21 +151,15 @@ outlines:
 
           # Back up the bottom edge of the matrix
           - ref: matrix_inner_bottom  
-            shift: [0.45cx, -0.55cy]
+            shift: [0 , -0.55cy]
           - ref: matrix_inner_bottom  
             shift: [-half_key_x, -half_key_y]
           - ref: matrix_index_bottom  
-            shift: [0.45cx, -half_key_y]
-          - ref: matrix_index_bottom  
-            shift: [-half_key_x, -half_key_y]
-          - ref: matrix_middle_bottom  
-            shift: [half_key_x, -half_key_y]
-          - ref: matrix_middle_bottom  
             shift: [-half_key_x, -half_key_y]
           - ref: matrix_ring_bottom  
             shift: [half_key_x, -half_key_y]
           - ref: matrix_ring_bottom  
-            shift: [-half_key_x, -half_key_y]
+            shift: [-half_key_x / 2, -half_key_y]
           - ref: matrix_pinky_bottom 
             shift: [half_key_x, -half_key_y]
           - ref: matrix_pinky_bottom 
@@ -173,10 +167,20 @@ outlines:
 
     pcb_screw_holes:
       - what: circle
-        radius: 1.1 # Space for an M2 screw with 0.1mm tolerance
+        radius: pcb_m2_radius
         adjust: 
-          - ref: matrix_inner_home
-          - shift: [15, 0]
+          - ref: matrix_pinky_top    
+          - shift: [0, -pcb_screw_y_offset]
+      - what: circle
+        radius: pcb_m2_radius
+        adjust: 
+          - ref: matrix_pinky_bottom    
+          - shift: [0, -pcb_screw_y_offset]
+      - what: circle
+        radius: pcb_m2_radius
+        adjust: 
+          - ref: thumbs_mod1_cluster    
+          - shift: [0, -pcb_screw_y_offset]
 
     pcb_fab:
       - name: pcb_outline
