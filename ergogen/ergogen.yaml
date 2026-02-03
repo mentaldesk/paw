@@ -29,28 +29,28 @@ points:
       columns:
         pinky:
           key:
-            splay: 16
+            splay: 9
             spread: px
             column_net: P029
             mirror.column_net: P111
         ring:
           key:
             splay: -1
-            stagger: 10
+            stagger: 4
             spread: kx
             column_net: P002
             mirror.column_net: P113
         middle:
           key:
             splay: -4
-            stagger: 6
+            stagger: 2
             spread: px
             column_net: P115
             mirror.column_net: P115
         index:
           key:
             splay: -4
-            stagger: -8
+            stagger: -4
             spread: px
             column_net: P113
             mirror.column_net: P002
@@ -103,19 +103,9 @@ outlines:
           # Top edge (outermost tops)
           - ref: matrix_pinky_top    
             shift: [-half_key_x,  half_key_y]
-          - ref: matrix_pinky_top    
-            shift: [half_key_x,  half_key_y]
-          - ref: matrix_ring_top     
-            shift: [-half_key_x,  half_key_y]
-          - ref: matrix_ring_top     
-            shift: [half_key_x,  half_key_y]
-          - ref: matrix_middle_top   
-            shift: [-half_key_x,  half_key_y]
-          - ref: matrix_middle_top   
-            shift: [half_key_x,  half_key_y]
 
           - ref: matrix_index_top
-            shift: [ -half_key_x,  half_key_y + pogo_pad_spacing]
+            shift: [ -2.5px,  half_key_y + pogo_pad_spacing]
           - ref: matrix_index_top
             shift: [ half_key_x + cx,  half_key_y + pogo_pad_spacing]
 
@@ -151,19 +141,7 @@ outlines:
 
           # Back up the bottom edge of the matrix
           - ref: matrix_inner_bottom  
-            shift: [0.45cx, -0.55cy]
-          - ref: matrix_inner_bottom  
-            shift: [-half_key_x, -half_key_y]
-          - ref: matrix_index_bottom  
-            shift: [0.45cx, -half_key_y]
-          - ref: matrix_index_bottom  
-            shift: [-half_key_x, -half_key_y]
-          - ref: matrix_middle_bottom  
-            shift: [half_key_x, -half_key_y]
-          - ref: matrix_middle_bottom  
-            shift: [-half_key_x, -half_key_y]
-          - ref: matrix_ring_bottom  
-            shift: [half_key_x, -half_key_y]
+            shift: [0, -half_key_y -2]
           - ref: matrix_ring_bottom  
             shift: [-half_key_x, -half_key_y]
           - ref: matrix_pinky_bottom 
@@ -175,8 +153,18 @@ outlines:
       - what: circle
         radius: 1.1 # Space for an M2 screw with 0.1mm tolerance
         adjust: 
-          - ref: matrix_inner_home
-          - shift: [15, 0]
+          - ref: matrix_pinky_top
+          - shift: [0, -5]
+      - what: circle
+        radius: 1.1 # Space for an M2 screw with 0.1mm tolerance
+        adjust: 
+          - ref: matrix_pinky_bottom
+          - shift: [0, -5]
+      - what: circle
+        radius: 1.1 # Space for an M2 screw with 0.1mm tolerance
+        adjust: 
+          - ref: thumbs_mod1_cluster
+          - shift: [0, -5]
 
     pcb_fab:
       - name: pcb_outline
@@ -185,9 +173,9 @@ outlines:
 
     combined:
       - name: pcb_outline
-      - operation: subtract
+      - operation: stack
         name: switches
-      - operation: subtract
+      - operation: stack
         name: pcb_screw_holes
 
     switch_block:
