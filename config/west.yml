@@ -4,6 +4,8 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
+    - name: mentaldesk
+      url-base: https://github.com/mentaldesk      
     - name: aym1607
       url-base: https://github.com/AYM1607      
     # Additional modules containing boards/shields/custom code can be listed here as well
