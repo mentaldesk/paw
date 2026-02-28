@@ -1,17 +1,7 @@
 /*
- * Copyright (c) 2025 James Crosswell
+ * Copyright (c) 2026 James Crosswell
  *
  * SPDX-License-Identifier: MIT
  */
 
 #include "paw.dtsi"
-
-&kscan0 {
-    col-gpios
-        = <&pro_micro 20 GPIO_ACTIVE_HIGH>
-        , <&pro_micro 19 GPIO_ACTIVE_HIGH>
-        , <&pro_micro 18 GPIO_ACTIVE_HIGH>
-        , <&pro_micro 15 GPIO_ACTIVE_HIGH>
-        , <&pro_micro 14 GPIO_ACTIVE_HIGH>
-        ;
-};
