@@ -31,8 +31,10 @@
         two-finger-tap;
 
         scroll;
+#if CONFIG_PAW_NATURAL_SCROLL
         natural-scroll-y;
         natural-scroll-x;
+#endif
 
         bottom-beta = <5>;
         stationary-threshold = <5>;

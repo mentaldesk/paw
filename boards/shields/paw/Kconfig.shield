@@ -7,7 +7,15 @@ config SHIELD_PAW_LEFT
 config SHIELD_PAW_RIGHT
     def_bool $(shields_list_contains,paw_right)
 
-config PAW_TRACKPAD_ON_LEFT
+config PAW_NATURAL_SCROLL
+    bool "Enable natural (reversed) scroll direction"
+    depends on SHIELD_PAW_LEFT || SHIELD_PAW_RIGHT
+    default n
+    help
+      Enable natural scrolling (content follows finger direction) on the
+      trackpad. Disabled by default for a traditional scroll feel.
+
+
     bool "Mount trackpad on left half"
     depends on SHIELD_PAW_LEFT || SHIELD_PAW_RIGHT
     default n
