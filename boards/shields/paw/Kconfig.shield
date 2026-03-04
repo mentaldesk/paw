@@ -15,7 +15,7 @@ config PAW_NATURAL_SCROLL
       Enable natural scrolling (content follows finger direction) on the
       trackpad. Disabled by default for a traditional scroll feel.
 
-
+config PAW_TRACKPAD_LEFT
     bool "Mount trackpad on left half"
     depends on SHIELD_PAW_LEFT || SHIELD_PAW_RIGHT
     default n
