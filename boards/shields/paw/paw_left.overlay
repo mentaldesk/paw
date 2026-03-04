@@ -15,3 +15,7 @@
         , <&pro_micro 16 GPIO_ACTIVE_HIGH>
         ;
 };
+
+&tps43_listener {
+    status = "okay";
+};
