@@ -448,8 +448,8 @@
         bluetooth_layer {
             display-name = "Bluetooth";
             bindings = <
-   &trans      &trans       &trans       &trans       &trans           &trans       &trans           &trans          &trans          &trans
    &trans      &trans       &trans       &trans       &trans           &trans       &os_sel OS_MAC   &os_sel OS_WIN  &os_sel OS_LIN  &trans
+   &trans      &trans       &trans       &trans       &trans           &trans       &trans           &trans          &trans          &trans
    &trans      &trans       &trans       &trans       &trans           &trans       &bt_mac          &bt_win         &bt_and         &trans
                             &trans       &trans       &trans       &bt BT_CLR       &trans           &trans
             >;
