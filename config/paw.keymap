@@ -187,6 +187,7 @@
         // R+S+T = ESC
         combo_esc {
             timeout-ms = <50>;
+            require-prior-idle-ms = <125>;
             key-positions = <11 12 13>;
             bindings = <&kp ESC>;
             layers = <BASE>;
@@ -195,6 +196,7 @@
         // R+S+T = go back to BASE (on any non-BASE layer)
         combo_esc_to_base {
             timeout-ms = <50>;
+            require-prior-idle-ms = <125>;
             key-positions = <11 12 13>;
             bindings = <&to BASE>;
             layers = <MIRROR SYM BRAC NAV FUNC NUM WIN MEDIA BT SWITCH>;
@@ -203,6 +205,7 @@
         // N+E+I = Enter
         combo_enter {
             timeout-ms = <50>;
+            require-prior-idle-ms = <125>;
             key-positions = <16 17 18>;
             bindings = <&kp ENTER>;
             layers = <BASE>;
@@ -211,6 +214,7 @@
         // P+B = Tab
         combo_tab {
             timeout-ms = <50>;
+            require-prior-idle-ms = <125>;
             key-positions = <3 4>;
             bindings = <&kp TAB>;
             layers = <BASE>;
@@ -219,6 +223,7 @@
         // J+L = Grave/Backtick
         combo_grave {
             timeout-ms = <50>;
+            require-prior-idle-ms = <125>;
             key-positions = <5 6>;
             bindings = <&kp GRAVE>;
             layers = <BASE>;
@@ -227,6 +232,7 @@
         // T+G = OSM(Brackets)
         combo_brac {
             timeout-ms = <50>;
+            require-prior-idle-ms = <125>;
             key-positions = <13 14>;
             bindings = <&sl BRAC>;
             layers = <BASE>;
@@ -235,6 +241,7 @@
         // M+N = OSM(Symbols)
         combo_sym {
             timeout-ms = <50>;
+            require-prior-idle-ms = <125>;
             key-positions = <15 16>;
             bindings = <&sl SYM>;
             layers = <BASE>;
@@ -243,6 +250,7 @@
         // FP = OSM Left Shift
         combo_osm_lshift {
             timeout-ms = <50>;
+            require-prior-idle-ms = <125>;
             key-positions = <2 3>;
             bindings = <&skq LSHFT>;
             layers = <BASE>;
@@ -251,6 +259,7 @@
         // L+U = OSM Right Shift
         combo_osm_rshift {
             timeout-ms = <50>;
+            require-prior-idle-ms = <125>;
             key-positions = <6 7>;
             bindings = <&skq RSHFT>;
             layers = <BASE>;
@@ -259,6 +268,7 @@
         // U+Y = Apostrophe
         combo_apostrophe {
             timeout-ms = <50>;
+            require-prior-idle-ms = <125>;
             key-positions = <7 8>;
             bindings = <&kp SQT>;
             layers = <BASE>;
@@ -267,6 +277,7 @@
         // V+Z = Backslash
         combo_bslash {
             timeout-ms = <50>;
+            require-prior-idle-ms = <125>;
             key-positions = <23 24>;
             bindings = <&kp BSLH>;
             layers = <BASE>;
@@ -275,6 +286,7 @@
         // K+H = Slash
         combo_slash {
             timeout-ms = <50>;
+            require-prior-idle-ms = <125>;
             key-positions = <25 26>;
             bindings = <&kp SLASH>;
             layers = <BASE>;
@@ -283,6 +295,7 @@
         // W+F+P = Caps Word
         combo_capsword {
             timeout-ms = <50>;
+            require-prior-idle-ms = <125>;
             key-positions = <1 2 3>;
             bindings = <&caps_word>;
             layers = <BASE>;
@@ -291,6 +304,7 @@
         // L+U+Y = Caps Lock
         combo_capslock {
             timeout-ms = <50>;
+            require-prior-idle-ms = <125>;
             key-positions = <6 7 8>;
             bindings = <&kp CAPS>;
             layers = <BASE>;
@@ -299,6 +313,7 @@
         // T+V = OSM(Mirror)
         combo_mirror {
             timeout-ms = <50>;
+            require-prior-idle-ms = <125>;
             key-positions = <13 23>;
             bindings = <&sl MIRROR>;
             layers = <BASE>;
