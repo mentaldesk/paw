@@ -19,3 +19,38 @@
         , <&pro_micro 19 GPIO_ACTIVE_HIGH>
         ;
 };
+
+#if !CONFIG_PAW_TRACKPAD_ON_LEFT
+&pro_micro_i2c {
+    status = "okay";
+
+    tps43: iqs5xx@74 {
+        status = "okay";
+        compatible = "azoteq,iqs5xx";
+        reg = <0x74>;
+
+        one-finger-tap;
+        press-and-hold;
+        press-and-hold-time = <250>;
+        two-finger-tap;
+
+        scroll;
+#if CONFIG_PAW_NATURAL_SCROLL
+        natural-scroll-y;
+        natural-scroll-x;
+#endif
+
+        bottom-beta = <5>;
+        stationary-threshold = <5>;
+
+        switch-xy;
+
+        reset-gpios = <&pro_micro 9 GPIO_ACTIVE_LOW>;
+        rdy-gpios = <&pro_micro 4 GPIO_ACTIVE_HIGH>;
+    };
+};
+
+&tps43_split {
+    device = <&tps43>;
+};
+#endif
