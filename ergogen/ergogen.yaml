@@ -1,0 +1,366 @@
+meta:
+  engine: 4.1.0
+units:
+  # cx = 18 mm
+  # cy = 17 mm
+  kx: cx + 1
+  ky: cy + 1
+  px: kx + 1
+  py: ky + 1
+  half_key_x: 0.5cx
+  half_key_y: 0.5cy
+  thumb_corridor: 10
+  power_switch_width: 11.5
+  battery_connector_offset: 14
+  pogo_pad_spacing: 5
+  mcu_width: 18
+  mcu_padding: 3
+  mcu_space: mcu_width + mcu_padding * 2
+  doide_x_offset: 8.75
+  doide_y_offset: 2
+points:
+  zones:
+    matrix:
+      # Fix placement on KiCAD sheet.
+      anchor:
+        shift: [80, -190]
+      key:
+        padding: cy
+      columns:
+        pinky:
+          key:
+            splay: 9
+            spread: px
+            column_net: P029
+            mirror.column_net: P111
+        ring:
+          key:
+            splay: -1
+            stagger: 4
+            spread: kx
+            column_net: P002
+            mirror.column_net: P113
+        middle:
+          key:
+            splay: -4
+            stagger: 2
+            spread: px
+            column_net: P115
+            mirror.column_net: P115
+        index:
+          key:
+            splay: -4
+            stagger: -4
+            spread: px
+            column_net: P113
+            mirror.column_net: P002
+        inner:
+          key:
+            spread: cx
+            stagger: -0.2ky
+            column_net: P111
+            mirror.column_net: P029
+      rows:
+        bottom:
+          row_net: P100
+        home:
+          row_net: P024
+        top:
+          row_net: P022
+    thumbs:
+      anchor:
+        ref: matrix_inner_bottom
+        shift: [16, -ky]
+      columns:
+        mod1:
+          key:
+            splay: -15
+            column_net: P113
+            mirror.column_net: P002
+        mod2:
+          key:
+            spread: kx
+            stagger: -1.5
+            splay: -5
+            column_net: P111
+            mirror.column_net: P029
+      rows:
+        cluster:
+          row_net: P011
+outlines:
+    switches:
+      - what: rectangle
+        where: true
+        bound: false
+        size: [15,15]
+        
+    pcb_outline:
+      - what: polygon
+        operation: stack
+        fillet: 1
+        # Order matters: go clockwise around the outside
+        points:
+          # Top edge (outermost tops)
+          - ref: matrix_pinky_top    
+            shift: [-half_key_x,  half_key_y]
+
+          - ref: matrix_index_top
+            shift: [ -2.5px,  half_key_y + pogo_pad_spacing]
+          - ref: matrix_index_top
+            shift: [ half_key_x + cx,  half_key_y + pogo_pad_spacing]
+
+          # Make space for the battery, MCU and OLED
+          - ref: matrix_inner_top
+            shift: [ half_key_x,  1.5cy]
+          - ref: matrix_inner_top
+            shift: [ half_key_x + mcu_space, 1.5cy]
+          - ref: matrix_inner_top
+            shift: [ half_key_x + mcu_space, 1.5cy]
+
+          # Cut-out for the power switch
+          #- ref: matrix_inner_bottom
+          #  shift: [ half_key_x + 4,  half_key_y + 0]
+          - ref: matrix_inner_bottom
+            shift: [ half_key_x + mcu_space,  half_key_y - 5]
+          - ref: matrix_inner_bottom
+            shift: [ half_key_x + thumb_corridor,  half_key_y - 5]
+          - ref: matrix_inner_bottom
+            shift: [ half_key_x + thumb_corridor, half_key_y - 0 - power_switch_width]
+            
+          # Down into the thumb cluster
+          - ref: thumbs_mod1_cluster 
+            shift: [half_key_x, half_key_y]
+          - ref: thumbs_mod2_cluster 
+            shift: [ px / 2,  half_key_y]
+          - ref: thumbs_mod2_cluster 
+            shift: [ px / 2,  -half_key_y]
+          - ref: thumbs_mod2_cluster 
+            shift: [ -half_key_x,  -half_key_y]
+          - ref: thumbs_mod1_cluster 
+            shift: [-half_key_x, -half_key_y]
+
+          # Back up the bottom edge of the matrix
+          - ref: matrix_inner_bottom  
+            shift: [0, -half_key_y -2]
+          - ref: matrix_ring_bottom  
+            shift: [-half_key_x, -half_key_y]
+          - ref: matrix_pinky_bottom 
+            shift: [half_key_x, -half_key_y]
+          - ref: matrix_pinky_bottom 
+            shift: [-half_key_x, -half_key_y]
+
+    pcb_screw_holes:
+      - what: circle
+        radius: 1.1 # Space for an M2 screw with 0.1mm tolerance
+        adjust: 
+          - ref: matrix_pinky_top
+          - shift: [0, -5]
+      - what: circle
+        radius: 1.1 # Space for an M2 screw with 0.1mm tolerance
+        adjust: 
+          - ref: matrix_pinky_bottom
+          - shift: [0, -5]
+      - what: circle
+        radius: 1.1 # Space for an M2 screw with 0.1mm tolerance
+        adjust: 
+          - ref: thumbs_mod1_cluster
+          - shift: [0, -5]
+
+    pcb_fab:
+      - name: pcb_outline
+      - operation: subtract
+        name: pcb_screw_holes
+
+    combined:
+      - name: pcb_outline
+      - operation: stack
+        name: switches
+      - operation: stack
+        name: pcb_screw_holes
+
+    switch_block:
+      # One big rectangle that bounds all switch positions
+      - what: rectangle
+        size: [300, 300]   # extra margin around the outermost switches
+        adjust: 
+          - shift: [120, -160]
+
+      # Then subtract each switch “hole” from that big block
+      - operation: subtract
+        name: switches
+pcbs:
+  paw_left:
+    outlines:
+      main:
+        outline: pcb_fab
+    footprints:
+      choc_v1_v2:
+        what: switch_choc_v1_v2
+        where: true
+        params:
+          hotswap: false
+          solder: true
+          include_stabilizer_pad: false
+          side: B
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+      diode:
+        what: diode
+        where: true
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [doide_x_offset, doide_y_offset]
+          rotate: 90
+      mcu:
+        what: nice_nano_2
+        where:
+          ref: matrix_inner_top
+          shift: [kx + mcu_padding, 7.2]
+          rotate: -90
+      trackpad_connector:
+        what: trackpad_connector_5p_th
+        params:
+          P1: P106
+          P2: GND
+          P3: VCC
+          P4: P020
+          P5: P017
+        where:
+          ref: matrix_index_top
+          shift: [half_key_x, half_key_y + 3]
+      # This will be in the middle of the MCU... but on the other side of the PCB
+      reset_switch:
+        what: button_4p_65_45
+        params:
+          from: GND
+          to: RST
+        where:
+          ref: matrix_inner_top
+          shift: [kx + mcu_padding, cy]
+          rotate: 180
+      battery_connector:
+        what: battery_connector_jst_ph_2
+        params:
+          BAT_P: PAD_IN
+          BAT_N: B-
+          reversible: false
+          side: B
+        where:
+          ref: matrix_inner_home
+          shift: [half_key_x + battery_connector_offset, -half_key_y / 3]
+          rotate: -90
+      power_pad_in:
+        what: generic_connector
+        params:
+          show_labels: false
+          pin_count: 1
+          side: F
+          P1: PAD_IN
+        where:
+          ref: matrix_inner_home
+          shift: [half_key_x + battery_connector_offset + 4, -half_key_y / 2]
+          rotate: 65
+      power_pad_raw:
+        what: generic_connector
+        params:
+          show_labels: false
+          pin_count: 1
+          side: F
+          P1: B+
+        where:
+          ref: matrix_inner_bottom
+          shift: [half_key_x + thumb_corridor / 2, 0]
+          rotate: 65
+  paw_right:
+    outlines:
+      main:
+        outline: pcb_fab
+    footprints:
+      choc_v1_v2:
+        what: switch_choc_v1_v2
+        where: true
+        params:
+          hotswap: false
+          solder: true
+          include_stabilizer_pad: false
+          side: F
+          from: "{{colrow}}"
+          to: "{{column_net}}"
+      diode:
+        what: diode
+        where: true
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [doide_x_offset, doide_y_offset]
+          rotate: 90
+      mcu:
+        what: nice_nano_2
+        where:
+          ref: matrix_inner_top
+          shift: [kx + mcu_padding, 7.2]
+          rotate: -90
+        params:
+          # It won't literally be up... this just helps us flip the pins
+          # to reflect the fact that it's on the other side of the keyboad
+          # (actually the rest of the keyboard is flipped in this case)
+          orientation: 'up'
+      trackpad_connector:
+        what: trackpad_connector_5p_th
+        params:
+          P1: P106
+          P2: GND
+          P3: VCC
+          P4: P020
+          P5: P017
+          side: B
+          flip: true
+        where:
+          ref: matrix_index_top
+          shift: [half_key_x, half_key_y + 3]
+      reset_switch:
+        what: button_4p_65_45
+        params:
+          from: GND
+          to: RST
+          side: B
+        where:
+          ref: matrix_inner_top
+          shift: [kx + mcu_padding, cy]
+          rotate: 180
+      battery_connector:
+        what: battery_connector_jst_ph_2
+        params:
+          BAT_P: PAD_IN
+          BAT_N: B-
+          reversible: false
+          side: F
+        where:
+          ref: matrix_inner_home
+          shift: [half_key_x + battery_connector_offset, -half_key_y / 3]
+          rotate: -90
+      power_pad_in:
+        what: generic_connector
+        params:
+          show_labels: false
+          pin_count: 1
+          side: B
+          P1: PAD_IN
+        where:
+          ref: matrix_inner_home
+          shift: [half_key_x + battery_connector_offset + 4, -half_key_y / 2]
+          rotate: 65
+      power_pad_raw:
+        what: generic_connector
+        params:
+          show_labels: false
+          pin_count: 1
+          side: B
+          P1: B+
+        where:
+          ref: matrix_inner_bottom
+          shift: [half_key_x + thumb_corridor / 2, 0]
+          rotate: 65

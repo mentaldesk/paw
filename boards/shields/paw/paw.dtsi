@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 James Crosswell
+ * Copyright (c) 2026 James Crosswell
  *
  * SPDX-License-Identifier: MIT
  */
@@ -41,17 +41,31 @@ RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4)  RC(2,5) RC(2,6) RC(2,7) RC(2,8) RC(2,9)
 
         diode-direction = "col2row";
         row-gpios
-            = <&pro_micro 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&pro_micro 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            = <&pro_micro 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             , <&pro_micro 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             , <&pro_micro 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             ;
-
     };
 
-    tps43_input: tps43_input {
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        tps43_split: tps43_split@74 {
+            compatible = "zmk,input-split";
+            reg = <0x74>;
+        };
+    };
+
+    tps43_listener: tps43_listener {
         compatible = "zmk,input-listener";
+        status = "disabled";
+#if CONFIG_PAW_TRACKPAD_ON_LEFT
         device = <&tps43>;
+#else
+        device = <&tps43_split>;
+#endif
     };
 };
 
@@ -75,26 +89,4 @@ RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4)  RC(2,5) RC(2,6) RC(2,7) RC(2,8) RC(2,9)
         prechargep = <0x22>;
     };
 
-    tps43: iqs5xx@74 {
-        status = "okay";
-        compatible = "azoteq,iqs5xx";
-        reg = <0x74>;
-
-        one-finger-tap;
-        press-and-hold;
-        press-and-hold-time = <250>;
-        two-finger-tap;
-
-        scroll;
-        natural-scroll-y;
-        natural-scroll-x;
-
-        bottom-beta = <5>;
-        stationary-threshold = <5>;
-
-        switch-xy;
-
-        reset-gpios = <&pro_micro 8 GPIO_ACTIVE_LOW>; /* P1.04 */
-        rdy-gpios = <&pro_micro 9 GPIO_ACTIVE_HIGH>; /* P1.06 */
-    };
 };

@@ -1,0 +1,8 @@
+# KiCad / PCB artifacts
+pcb/**/*.lck
+fp-info-cache
+pcb/**/production
+
+# Local KiCad backup folders
+pcb/paw_left/paw_left-backups/
+pcb/paw_right/paw_right-backups/
