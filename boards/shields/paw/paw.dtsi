@@ -61,7 +61,11 @@ RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4)  RC(2,5) RC(2,6) RC(2,7) RC(2,8) RC(2,9)
     tps43_listener: tps43_listener {
         compatible = "zmk,input-listener";
         status = "disabled";
+#if CONFIG_PAW_TRACKPAD_ON_LEFT
+        device = <&tps43>;
+#else
         device = <&tps43_split>;
+#endif
     };
 };
 

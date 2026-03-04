@@ -6,3 +6,11 @@ config SHIELD_PAW_LEFT
 
 config SHIELD_PAW_RIGHT
     def_bool $(shields_list_contains,paw_right)
+
+config PAW_TRACKPAD_ON_LEFT
+    bool "Mount trackpad on left half"
+    depends on SHIELD_PAW_LEFT || SHIELD_PAW_RIGHT
+    default n
+    help
+      By default the trackpad is mounted on the right (peripheral) half.
+      Enable this option to mount it on the left (central) half instead.

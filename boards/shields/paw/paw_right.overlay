@@ -20,6 +20,7 @@
         ;
 };
 
+#if !CONFIG_PAW_TRACKPAD_ON_LEFT
 &pro_micro_i2c {
     status = "okay";
 
@@ -50,3 +51,4 @@
 &tps43_split {
     device = <&tps43>;
 };
+#endif
