@@ -42,12 +42,6 @@
     };
 
     behaviors {
-        // See https://github.com/mentaldesk/oskey?tab=readme-ov-file#2-define-an-os-selector-behavior-instance
-        os_sel: os_selector {
-            compatible = "zmk,behavior-os-selector";
-            #binding-cells = <1>;
-        };
-
         ok_win_lh: os_key_win_left_half {
             compatible = "zmk,behavior-os-key";
             #binding-cells = <0>;
@@ -74,6 +68,13 @@
             #binding-cells = <0>;
             /*            Win           Mac           Lin  */
             bindings = <&kp LS(LG(LEFT))>, <&kp LA(LC(LG(DOWN)))>, <&kp ESC>;
+        };
+
+        ok_win_next_inst: os_key_win_next_instance {
+            compatible = "zmk,behavior-os-key";
+            #binding-cells = <0>;
+            /*            Win           Mac           Lin  */
+            bindings = <&kp LA(GRAVE)>, <&kp LG(GRAVE)>, <&kp LA(GRAVE)>;
         };
 
         // Custom sticky key with quick release
@@ -425,30 +426,30 @@
             >;
         };
 
-// -----------------------------------------------------------------------------------------
-// |     |     |     |     |     |     |     | LHalf    | MAX        |  RHalf  |     |
-// |     |     |     |     |     |     |     |  LFT     | NextScreen |   RGT   |     |
-// |     |     |     |     |     |     |     | MissCtrl | Desktop    |         |     |
-//             |     |     |     |     |     |          |
+// ------------------------------------------------------------------------------------------------
+// |     |     |     |     |     |     |           | LHalf      | MAX        |  RHalf    |              |
+// |     |     |     |     |     |     |  Desktop  | PrevApp    | NextScreen |  NextApp  | NextInstance |
+// |     |     |     |     |     |     |           | PrevTab    | MissCtrl   |  NextTab  |              |
+//             |     |     |     |     |           |            |
         window_layer {
             display-name = "Window";
             bindings = <
-   &trans      &trans       &trans       &trans       &trans           &trans       &ok_win_lh           &ok_win_max      &ok_win_rh            &trans
-   &trans      &trans       &trans       &trans       &trans           &trans       &kp LA(LG(LC(LEFT))) &ok_win_next_scr &kp LA(LG(LC(RIGHT))) &trans
-   &trans      &trans       &trans       &trans       &trans           &trans       &ok_mission_ctrl     &ok_desktop      &trans                &trans
-                            &trans       &trans       &trans           &trans       &trans       &trans
+   &trans      &trans       &trans       &trans       &trans           &trans       &ok_win_lh       &ok_win_max       &ok_win_rh     &trans
+   &trans      &trans       &trans       &trans       &trans           &ok_desktop  &ok_prev_app     &ok_win_next_scr  &ok_next_app   &ok_win_next_inst
+   &trans      &trans       &trans       &trans       &trans           &trans       &ok_prev_tab     &ok_mission_ctrl  &ok_next_tab   &trans
+                            &trans       &trans       &trans           &trans       &trans           &trans
             >;
         };
 
 // -----------------------------------------------------------------------------------------
-// |FORCE|    |SCRNF |SCRNC|     |     |     |     |     |     |     |
-// |     | VOL-| MUTE| VOL+|     |     |     |     |     |     |     |
-// |     | CALC|     |     |     |     |     |     |     |     |     |
-//             |     |     |     |     |     |     |
+// |FORCE| SCRN | SCRNF | SCRNC |     |     |     |     |     |     |     |
+// |     | VOL- |  MUTE |  VOL+ |     |     |     |     |     |     |     |
+// |     | CALC |       |       |     |     |     |     |     |     |     |
+//              |       |       |     |     |     |     |
         media_layer {
             display-name = "Media";
             bindings = <
-   &ok_force_quit   &trans          &kp LG(LS(N4)) &kp LG(LC(LS(N4)))   &trans       &trans       &trans       &trans       &trans       &trans
+   &ok_force_quit   &kp LG(LS(N5))  &kp LG(LS(N4)) &kp LG(LC(LS(N4)))   &trans       &trans       &trans       &trans       &trans       &trans
    &trans           &kp C_VOL_DN    &kp C_MUTE     &kp C_VOL_UP         &trans       &trans       &trans       &trans       &trans       &trans
    &trans           &kp C_AL_CALC   &trans         &trans               &trans       &trans       &trans       &trans       &trans       &trans
                                     &trans         &trans               &trans       &trans       &trans       &trans
