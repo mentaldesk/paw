@@ -1,14 +1,9 @@
-// ------------------------------------------------------------------------------------------------
-// |     |     |     |     |     |     |           | LHalf      | MAX        |  RHalf    |              |
-// |     |     |     |     |     |     |  Desktop  | PrevApp    | NextScreen |  NextApp  | NextInstance |
-// |     |     |     |     |     |     |           | PrevTab    | MissCtrl   |  NextTab  |              |
-//             |     |     |     |     |           |            |
 window_layer {
     display-name = "Window";
     bindings = <
-   &trans      &trans       &trans       &trans       &trans           &trans    &ok_win_lh       &ok_win_max       &ok_win_rh     &trans
-   &trans      &trans       &trans       &trans       &trans           &trans    &ok_prev_tab     &ok_win_next_scr  &ok_next_tab   &ok_win_next_inst
-   &trans      &trans       &trans       &trans       &trans           &trans    &ok_mission_ctrl &ok_desktop       &trans         &trans
-                            &trans       &trans       &trans           &trans    &trans           &trans
+   &trans  &trans   &trans    &trans    &trans     &ok_win_next_inst  &ok_win_lh     &ok_win_max       &ok_win_rh     &trans
+   &trans  &trans   &trans    &trans    &trans     &ok_desktop        &ok_prev_tab   &ok_win_next_scr  &ok_next_tab   &ok_mission_ctrl
+   &trans  &trans   &trans    &trans    &trans     &trans             &ok_zoom_out   &ok_zoom_reset    &ok_zoom_in    &trans
+                    &trans    &trans    &trans     &trans             &trans         &trans
     >;
 };

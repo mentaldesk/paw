@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------------------------
+// | RST |  _  |  *  |  ~  |     |     |     |     |     |     |     |
+// |  !  |  -  |  +  |  =  |  ^  |     |     |     |     |     |     |
+// |  \  |  |  |  &  |  %  |     |     |     |     |     |     |     |
+//             |     |     |     |     |     |     |
+symbol_layer {
+    display-name = "Command";
+    bindings = <
+        &trans    &trans    &trans    &trans    &trans     &trans       &trans       &trans       &trans       &trans
+        &trans    &trans    &trans    &trans    &trans     &trans       &trans       &trans       &trans       &trans
+        &trans    &trans    &trans    &trans    &trans     &trans       &trans       &trans       &trans       &trans
+                            &trans    &trans    &trans     &trans       &trans       &trans
+    >;
+};
