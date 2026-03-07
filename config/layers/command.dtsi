@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------------------------
+// |     | Close | Find  | Print | Bold  |     |      |        | Undrln |        |     |
+// | All | Redo  | Save  | NwTab |       |     |      | NwWin  |        | Italic | Open|
+// | Cut | Copy  |       | Paste | Undo  |     |      | FndRpl |        |        |     |
+//               |       |       |       |     |      |        |
+command_layer {
+    display-name = "Command";
+    bindings = <
+        &trans       &ok_close   &ok_find    &ok_print   &ok_bold       &trans  &trans          &ok_underline  &trans      &trans
+        &ok_sel_all  &ok_redo    &ok_save    &ok_new_tab &trans         &trans  &ok_new_win     &trans         &ok_italic  &ok_open
+        &ok_cut      &ok_copy    &trans      &ok_paste   &ok_undo       &trans  &ok_find_replace &trans        &trans      &trans
+                                 &trans      &trans      &trans         &trans  &trans           &trans
+    >;
+};
