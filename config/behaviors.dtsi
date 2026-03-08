@@ -137,15 +137,6 @@
             hold-trigger-on-release;
         };
 
-        osm_meh: osm_meh_hold_tap {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <0>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&skq>;
-        };
-
         // Layer-tap with quick-tap for DEL and BSPC
         lt_qt: layer_tap_quick_tap {
             compatible = "zmk,behavior-hold-tap";
