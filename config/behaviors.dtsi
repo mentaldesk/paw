@@ -52,6 +52,14 @@
             bindings = <&kp LA(SPACE)>, <&kp LG(SPACE)>, <&kp LG(S)>;
         };
 
+        // Mainly for github - wraps selected text in `` characters to indicate it's code
+        ok_code: os_key_code {
+            compatible = "zmk,behavior-os-key";
+            #binding-cells = <0>;
+            /*            Win           Mac           Lin  */
+            bindings = <&kp LC(E)>, <&kp LG(E)>, <&kp LC(E)>;
+        };
+
         // Custom sticky key with quick release
         skq: sticky_key_quick_release {
             compatible = "zmk,behavior-sticky-key";
