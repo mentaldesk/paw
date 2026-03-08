@@ -1,4 +1,8 @@
 / {
+    ok_ltm {
+        tapping-term-ms = <150>;
+    };
+
     behaviors {
         ok_win_lh: os_key_win_left_half {
             compatible = "zmk,behavior-os-key";
