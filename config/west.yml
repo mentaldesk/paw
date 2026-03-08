@@ -16,7 +16,7 @@ manifest:
       import: app/west.yml
     - name: oskey
       remote: mentaldesk
-      revision: main
+      revision: require-prior-idle
     - name: zmk-driver-azoteq-iqs5xx
       remote: aym1607
       revision: main
