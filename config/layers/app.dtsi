@@ -8,9 +8,9 @@
 app_layer {
     display-name = "App";
     bindings = <
-        &trans  &trans  &trans  &trans  &trans      &trans  &trans          &trans    &trans  &trans
-        &trans  &trans  &trans  &trans  &trans      &trans  &kp LS(TAB)     &kp TAB   &trans  &trans
-        &trans  &trans  &trans  &trans  &trans      &trans  &trans          &trans    &trans  &trans
-                        &trans  &trans  &trans      &trans  &trans          &trans
+        &trans  &trans  &trans       &trans   &trans      &trans  &trans  &trans  &trans  &trans
+        &trans  &trans  &kp LS(TAB)  &kp TAB  &trans      &trans  &trans  &trans  &trans  &trans
+        &trans  &trans  &trans       &trans   &trans      &trans  &trans  &trans  &trans  &trans
+                        &trans       &trans   &trans      &trans  &trans  &trans
     >;
 };

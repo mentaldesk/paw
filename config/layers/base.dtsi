@@ -6,8 +6,8 @@
 base_layer {
     display-name = "Base";
     bindings = <
-   &kp Q             &lt WIN W    &lt CMD F    &lt NUM P           &lt BT B            &kp J             &lt SWITCH L       &lt CMD U             &lt MEDIA Y     &kp SQT
-   &kp A             &kp R        &kp S        &kp T               &ok_ltm APP G       &kp M             &kp N              &kp E                 &kp I           &kp O
+   &kp Q             &lt WIN W    &lt CMD F    &lt NUM P           &lt BT B            &kp J             &lt SWITCH L       &lt CMD U             &ok_ltm APP Y   &kp SQT
+   &kp A             &kp R        &kp S        &kp T               &kp G               &lt MEDIA M       &kp N              &kp E                 &kp I           &kp O
    &bml_shft LSHFT X &bml LCTRL C &bml LALT D  &bml_no_qt LGUI V   &kp Z               &kp K             &bmr_no_qt RGUI H  &bmr_no_qt RALT COMMA &bmr RCTRL DOT  &bmr_shft RSHFT SLASH
                                   &trans       &lt BRAC SPACE      &lt_qt NAV DEL      &lt_qt FUNC BSPC  &lt SYM SPACE      &trans
     >;
