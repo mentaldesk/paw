@@ -1,9 +1,13 @@
 / {
-    ok_ltm {
-        tapping-term-ms = <150>;
-    };
-
     behaviors {
+        alt_ltm: os_layer_mod {
+            compatible = "zmk,behavior-os-layer-mod";
+            #binding-cells = <2>;
+            tapping-term-ms = <150>;
+            /*             Win         Mac         Lin  */
+            bindings = <&kp LALT>, <&kp LGUI>, <&kp LALT>;
+        };
+
         ok_win_lh: os_key_win_left_half {
             compatible = "zmk,behavior-os-key";
             #binding-cells = <0>;
