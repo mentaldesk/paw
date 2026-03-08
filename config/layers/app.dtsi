@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------------------------
+// App switcher layer — active while G is held (OS modifier held by &ok_ltm)
+// |     |     |     |     |     |     |     |     |     |     |     |
+// |     |     |     |     |     |     |PREV | FWD |     |     |     |
+// |     |     |     |     |     |     |     |     |     |     |     |
+//             |     |     |     |     |     |     |
+// N = TAB (next app), E = Shift+TAB (prev app)
+app_layer {
+    display-name = "App";
+    bindings = <
+        &trans  &trans  &trans  &trans  &trans      &trans  &trans          &trans  &trans  &trans
+        &trans  &trans  &trans  &trans  &trans      &trans  &kp TAB         &kp LS(TAB)  &trans  &trans
+        &trans  &trans  &trans  &trans  &trans      &trans  &trans          &trans  &trans  &trans
+                        &trans  &trans  &trans      &trans  &trans          &trans
+    >;
+};

@@ -16,6 +16,7 @@
 #define BT      9
 #define SWITCH  10
 #define CMD     11
+#define APP     12
 
 #include "behaviors.dtsi"
 #include "combos.dtsi"
@@ -59,5 +60,6 @@
         #include "layers/bluetooth.dtsi"
         #include "layers/switch.dtsi"
         #include "layers/command.dtsi"
+        #include "layers/app.dtsi"
     };
 };
