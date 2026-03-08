@@ -28,28 +28,18 @@
             bindings = <&kp LS(LG(LEFT))>, <&kp LA(LC(LG(DOWN)))>, <&kp ESC>;
         };
 
-        // TODO: This needs to go on a momentary layer so the menu stays open while cycling through the apps
-        // Maybe we make it a command layer that includes cut/copy/paste/undo/redo and next/prev app. 
-        ok_prev_app: os_key_prev_app {
-            compatible = "zmk,behavior-os-key";
-            #binding-cells = <0>;
-            /*            Win           Mac           Lin  */
-            bindings = <&kp LS(LA(TAB))>, <&kp LS(LG(TAB))>, <&kp LS(LA(TAB))>;
-        };
-
-        // TODO: This needs to go on a momentary layer so the menu stays open while cycling through the apps
-        ok_next_tab: os_key_next_tab {
-            compatible = "zmk,behavior-os-key";
-            #binding-cells = <0>;
-            /*            Win           Mac           Lin  */
-            bindings = <&kp LC(RBRC)>, <&kp LG(RBRC)>, <&kp LC(RBRC)>;
-        };
-
         ok_win_next_inst: os_key_win_next_instance {
             compatible = "zmk,behavior-os-key";
             #binding-cells = <0>;
             /*            Win           Mac           Lin  */
             bindings = <&kp LA(GRAVE)>, <&kp LG(GRAVE)>, <&kp LA(GRAVE)>;
+        };
+
+        ok_app_search: os_key_app_search {
+            compatible = "zmk,behavior-os-key";
+            #binding-cells = <0>;
+            /*            Win           Mac           Lin  */
+            bindings = <&kp LA(SPACE)>, <&kp LG(SPACE)>, <&kp LG(S)>;
         };
 
         // Custom sticky key with quick release
