@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------------------------
+// |FORCE| SCRN | SCRNF | SCRNC |     |     |     |     |     |     |     |
+// |     | VOL- |  MUTE |  VOL+ |     |     |     |     |     |     |     |
+// |     | CALC |       |       |     |     |     |     |     |     |     |
+//              |       |       |     |     |     |     |
+media_layer {
+    display-name = "Media";
+    bindings = <
+   &ok_force_quit   &kp LG(LS(N5))  &kp LG(LS(N4)) &kp LG(LC(LS(N4)))   &trans       &trans       &trans       &trans       &trans       &trans
+   &trans           &kp C_VOL_DN    &kp C_MUTE     &kp C_VOL_UP         &trans       &trans       &trans       &trans       &trans       &trans
+   &trans           &trans          &trans         &trans               &trans       &trans       &trans       &trans       &trans       &trans
+                                    &trans         &trans               &trans       &trans       &trans       &trans
+    >;
+};

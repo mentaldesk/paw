@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------------------------
+// | RST |     |     |     |     |     |     |  {  |  }  |  $  |     |
+// |     |     |     |     |     |     |  #  |  (  |  )  |  :  |  @  |
+// |     |     |     |     |     |     |     |  [  |  ]  |  ;  |     |
+//             |     |     |     |     |     |     |
+bracket_layer {
+    display-name = "Bracket";
+    bindings = <
+   &trans      &trans       &trans       &trans       &trans           &trans       &kp LBRC     &kp RBRC     &kp DLLR     &trans
+   &trans      &trans       &trans       &trans       &trans           &kp HASH     &kp LPAR     &kp RPAR     &kp COLON    &kp AT
+   &trans      &trans       &trans       &trans       &trans           &trans       &kp LBKT     &kp RBKT     &kp SEMI     &trans
+                            &trans       &trans       &trans           &trans       &trans       &trans
+    >;
+};

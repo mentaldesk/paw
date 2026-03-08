@@ -1,0 +1,9 @@
+window_layer {
+    display-name = "Window";
+    bindings = <
+   &trans  &trans   &trans    &trans    &trans     &ok_win_next_inst  &ok_win_lh     &ok_win_max       &ok_win_rh     &trans
+   &trans  &trans   &trans    &trans    &trans     &ok_desktop        &ok_prev_tab   &ok_win_next_scr  &ok_next_tab   &ok_mission_ctrl
+   &trans  &trans   &trans    &trans    &trans     &trans             &ok_zoom_out   &ok_zoom_reset    &ok_zoom_in    &trans
+                    &trans    &trans    &trans     &trans             &trans         &trans
+    >;
+};

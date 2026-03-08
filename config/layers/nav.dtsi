@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------------------------
+// | RST |     |     |     |     |     | HOME| WBCK|  UP | WFWD| END |
+// | CUT | CPY | PST | UND |     |     | TOP | LEFT| DOWN|RIGHT| PGUP|
+// |LSHFT|LCTRL|LALT | LGUI|     |     | BTM | HOME|     | END | PGDN|
+//             |     |     |     |     |     | TAB |
+nav_layer {
+    display-name = "Nav";
+    bindings = <
+   &trans      &trans       &trans       &trans       &trans           &kp HOME         &ok_prev_word   &kp UP       &ok_next_word  &kp END
+   &kp LG(X)   &kp LG(C)    &kp LG(V)    &kp LG(Z)    &trans           &ok_doc_start    &kp LEFT        &kp DOWN     &kp RIGHT      &kp PG_UP
+   &kp LSHFT   &kp LCTRL    &kp LALT     &kp LGUI     &trans           &ok_doc_end      &ok_line_start  &trans       &ok_line_end   &kp PG_DN
+                            &trans       &trans       &trans           &trans           &trans          &trans
+    >;
+};

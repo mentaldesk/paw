@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------------------------
+// |BASE |     |     | NUM |     |     |     |     |     |     |     |
+// |     |     |     |     |     |     |     |     |     |     |     |
+// |     |     |     |     |     |     |     |     |     |     |     |
+//             |     |     | NAV |     | FUNC|     |     |
+switch_layer {
+    display-name = "Switch";
+    bindings = <
+   &trans      &trans       &trans       &to NUM      &trans           &trans       &trans       &trans       &trans       &trans
+   &trans      &trans       &trans       &trans       &trans           &trans       &trans       &trans       &trans       &trans
+   &trans      &trans       &trans       &trans       &trans           &trans       &trans       &trans       &trans       &trans
+                            &trans       &trans       &to NAV          &to FUNC     &trans       &trans
+    >;
+};
