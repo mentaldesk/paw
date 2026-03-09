@@ -60,6 +60,30 @@
             bindings = <&kp LC(E)>, <&kp LG(E)>, <&kp LC(E)>;
         };
 
+        // In IDEs, this pops open the settings
+        ok_settings: os_key_settings {
+            compatible = "zmk,behavior-os-key";
+            #binding-cells = <0>;
+            /*            Win           Mac           Lin  */
+            bindings = <&kp LC(COMMA)>, <&kp LG(COMMA)>, <&kp LC(COMMA)>;
+        };
+
+        // In IDEs, this is a `quick fix`
+        ok_fix: os_key_fix {
+            compatible = "zmk,behavior-os-key";
+            #binding-cells = <0>;
+            /*            Win           Mac           Lin  */
+            bindings = <&kp LC(DOT)>, <&kp LG(DOT)>, <&kp LC(DOT)>;
+        };
+
+        // In IDEs this comments out the line
+        ok_comment: os_key_comment {
+            compatible = "zmk,behavior-os-key";
+            #binding-cells = <0>;
+            /*            Win           Mac           Lin  */
+            bindings = <&kp LC(SLASH)>, <&kp LG(SLASH)>, <&kp LC(SLASH)>;
+        };
+
         // Custom sticky key with quick release
         skq: sticky_key_quick_release {
             compatible = "zmk,behavior-sticky-key";
