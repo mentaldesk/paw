@@ -17,7 +17,7 @@
             require-prior-idle-ms = <125>;
             key-positions = <11 12 13>;
             bindings = <&to BASE>;
-            layers = <MIRROR SYM BRAC NAV FUNC NUM WIN MEDIA BT SWITCH>;
+            layers = <MIRROR SYM BRAC NAV FUNC NUM WIN MEDIA BT SWITCH CMD APP>;
         };
         
         // N+E+I = Enter
