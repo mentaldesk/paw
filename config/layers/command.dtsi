@@ -8,7 +8,7 @@ command_layer {
     bindings = <
         &ok_quit     &ok_close   &ok_find    &ok_print       &ok_bold       &trans    &trans           &ok_underline  &trans      &trans
         &ok_sel_all  &ok_redo    &ok_save    &ok_new_tab     &trans         &trans    &ok_new_win      &ok_code       &ok_italic  &ok_open
-        &ok_cut      &ok_copy    &trans      &ok_paste       &ok_undo       &trans    &ok_find_replace &ok_settings   &ok_fix     &ok_comment
+        &ok_cut      &ok_copy    &trans      &ok_paste       &ok_undo       &ok_link  &ok_find_replace &ok_settings   &ok_fix     &ok_comment
                                  &trans      &ok_app_search  &trans         &trans    &ok_app_search   &trans
     >;
 };

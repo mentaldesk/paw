@@ -84,6 +84,14 @@
             bindings = <&kp LC(SLASH)>, <&kp LG(SLASH)>, <&kp LC(SLASH)>;
         };
 
+        // Add hyperlink (in google docs)
+        ok_link: os_key_link {
+            compatible = "zmk,behavior-os-key";
+            #binding-cells = <0>;
+            /*            Win           Mac           Lin  */
+            bindings = <&kp LC(K)>, <&kp LG(K)>, <&kp LC(K)>;
+        };
+
         // Custom sticky key with quick release
         skq: sticky_key_quick_release {
             compatible = "zmk,behavior-sticky-key";
