@@ -120,7 +120,7 @@
         };
 
         // CMD + K + H = Comment
-        combo_slash {
+        combo_comment {
             timeout-ms = <50>;
             require-prior-idle-ms = <125>;
             key-positions = <25 26>;
