@@ -92,6 +92,14 @@
             bindings = <&kp LC(K)>, <&kp LG(K)>, <&kp LC(K)>;
         };
 
+        // Submit (on websites)
+        ok_submit: os_key_submit {
+            compatible = "zmk,behavior-os-key";
+            #binding-cells = <0>;
+            /*            Win           Mac           Lin  */
+            bindings = <&kp LC(ENTER)>, <&kp LG(ENTER)>, <&kp LC(ENTER)>;
+        };
+
         // Custom sticky key with quick release
         skq: sticky_key_quick_release {
             compatible = "zmk,behavior-sticky-key";
