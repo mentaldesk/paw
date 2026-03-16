@@ -17,7 +17,7 @@
             require-prior-idle-ms = <125>;
             key-positions = <11 12 13>;
             bindings = <&to BASE>;
-            layers = <MIRROR SYM BRAC NAV FUNC NUM WIN MEDIA BT SWITCH>;
+            layers = <MIRROR SYM BRAC NAV FUNC NUM WIN MEDIA BT SWITCH CMD APP>;
         };
         
         // N+E+I = Enter
@@ -27,6 +27,15 @@
             key-positions = <16 17 18>;
             bindings = <&kp ENTER>;
             layers = <BASE>;
+        };
+        
+        // Cmd + N+E+I = Submit
+        combo_submit {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <125>;
+            key-positions = <16 17 18>;
+            bindings = <&ok_submit>;
+            layers = <CMD>;
         };
         
         // P+B = Tab
@@ -65,23 +74,23 @@
             layers = <BASE>;
         };
 
-        // FP = OSM Left Shift
-        combo_osm_lshift {
-            timeout-ms = <50>;
-            require-prior-idle-ms = <125>;
-            key-positions = <2 3>;
-            bindings = <&skq LSHFT>;
-            layers = <BASE>;
-        };
+        // F+P = OSM Left Shift
+        //combo_osm_lshift {
+        //    timeout-ms = <50>;
+        //    require-prior-idle-ms = <125>;
+        //    key-positions = <2 3>;
+        //    bindings = <&skq LSHFT>;
+        //    layers = <BASE>;
+        //};
 
         // L+U = OSM Right Shift
-        combo_osm_rshift {
-            timeout-ms = <50>;
-            require-prior-idle-ms = <125>;
-            key-positions = <6 7>;
-            bindings = <&skq RSHFT>;
-            layers = <BASE>;
-        };
+        //combo_osm_rshift {
+        //    timeout-ms = <50>;
+        //    require-prior-idle-ms = <125>;
+        //    key-positions = <6 7>;
+        //    bindings = <&skq RSHFT>;
+        //    layers = <BASE>;
+        //};
 
         // U+Y = Apostrophe
         combo_apostrophe {
@@ -108,6 +117,15 @@
             key-positions = <25 26>;
             bindings = <&kp SLASH>;
             layers = <BASE>;
+        };
+
+        // CMD + K + H = Comment
+        combo_comment {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <125>;
+            key-positions = <25 26>;
+            bindings = <&ok_comment>;
+            layers = <CMD>;
         };
 
         // W+F+P = Caps Word
