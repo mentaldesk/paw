@@ -6,7 +6,7 @@
 bluetooth_layer {
     display-name = "Bluetooth";
     bindings = <
-   &trans      &trans       &trans       &trans       &trans           &trans       &trans.          &trans          &trans          &trans
+   &trans      &trans       &trans       &trans       &trans           &trans       &trans           &trans          &trans          &trans
    &trans      &trans       &trans       &trans       &trans           &trans       &trans           &trans          &trans          &trans
    &trans      &trans       &trans       &trans       &trans           &trans       &bt_mac          &bt_win         &bt_and         &bt_lin
                             &trans       &trans       &trans       &bt BT_CLR       &trans           &trans
