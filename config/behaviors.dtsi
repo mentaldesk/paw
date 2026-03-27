@@ -14,21 +14,21 @@
             compatible = "zmk,behavior-os-key";
             #binding-cells = <0>;
             /*            Win           Mac           Lin  */
-            bindings = <&kp LG(LEFT)>, <&kp LS(LA(LG(LC(LEFT))))>, <&kp ESC>;
+            bindings = <&kp LG(LEFT)>, <&kp LS(LA(LG(LC(LEFT))))>, <&kp LG(LEFT)>;
         };
 
         ok_win_rh: os_key_win_right_half {
             compatible = "zmk,behavior-os-key";
             #binding-cells = <0>;
             /*            Win           Mac           Lin  */
-            bindings = <&kp LG(RIGHT)>, <&kp LS(LA(LG(LC(RIGHT))))>, <&kp ESC>;
+            bindings = <&kp LG(RIGHT)>, <&kp LS(LA(LG(LC(RIGHT))))>, <&kp LG(RIGHT)>;
         };
 
         ok_win_max: os_key_win_maximize {
             compatible = "zmk,behavior-os-key";
             #binding-cells = <0>;
             /*            Win           Mac           Lin  */
-            bindings = <&kp LG(UP)>, <&kp LA(LC(ENTER))>, <&kp ESC>;
+            bindings = <&kp LG(UP)>, <&kp LA(LC(ENTER))>, <&kp LG(UP)>;,
         };
 
         ok_win_next_scr: os_key_win_next_screen {
@@ -42,7 +42,7 @@
             compatible = "zmk,behavior-os-key";
             #binding-cells = <0>;
             /*            Win           Mac           Lin  */
-            bindings = <&kp LA(GRAVE)>, <&kp LG(GRAVE)>, <&kp LA(GRAVE)>;
+            bindings = <&kp LA(GRAVE)>, <&kp LG(GRAVE)>, <&kp LG(GRAVE)>;
         };
 
         ok_app_search: os_key_app_search {
@@ -105,7 +105,7 @@
             compatible = "zmk,behavior-os-key";
             #binding-cells = <0>;
             /*            Win           Mac           Lin  */
-            bindings = <&kp LG(LS(S))>, <&kp LG(LC(LS(N4)))>, <&kp LG(LS(S))>;
+            bindings = <&kp LG(LS(S))>, <&kp LG(LC(LS(N4)))>, <&kp LS(PSCRN)>;
         }; 
 
         // Custom sticky key with quick release
