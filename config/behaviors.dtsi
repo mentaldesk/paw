@@ -28,7 +28,7 @@
             compatible = "zmk,behavior-os-key";
             #binding-cells = <0>;
             /*            Win           Mac           Lin  */
-            bindings = <&kp LG(UP)>, <&kp LA(LC(ENTER))>, <&kp LG(UP)>;,
+            bindings = <&kp LG(UP)>, <&kp LA(LC(ENTER))>, <&kp LG(UP)>;
         };
 
         ok_win_next_scr: os_key_win_next_screen {
