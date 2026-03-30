@@ -43,6 +43,12 @@
             #binding-cells = <0>;
             bindings = <&bt BT_SEL 2>, <&os_sel OS_LIN>;
         };
+
+        bt_lin: bt_lin {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 3>, <&os_sel OS_LIN>;
+        };
     };
 
     keymap {
