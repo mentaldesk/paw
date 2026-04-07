@@ -49,7 +49,7 @@
             compatible = "zmk,behavior-os-key";
             #binding-cells = <0>;
             /*            Win           Mac           Lin  */
-            bindings = <&kp LA(SPACE)>, <&kp LG(SPACE)>, <&kp LG(S)>;
+            bindings = <&kp LA(SPACE)>, <&kp LG(SPACE)>, <&kp LGUI>;
         };
 
         // Mainly for github - wraps selected text in `` characters to indicate it's code
